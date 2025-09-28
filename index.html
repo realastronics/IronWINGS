@@ -27,7 +27,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 10px 40px;
-            height: 80px; /* Slightly increased height to accommodate larger logo */
+            height: 80px;
         }
 
         .logo-container {
@@ -36,7 +36,7 @@
         }
 
         .logo-container .logo {
-            height: 60px; /* Much larger logo */
+            height: 60px;
             width: auto;
             margin-right: 15px;
         }
@@ -66,7 +66,6 @@
             color: #ccc;
         }
 
-        /* Dropdown Styles */
         .dropdown {
             position: relative;
             display: inline-block;
@@ -127,7 +126,7 @@
             align-items: center;
         }
 
-        .navbar .btn {
+        .navbar .nav-buttons .btn {
             background-color: #f5f8f5;
             color: #1a1919;
             border: none;
@@ -140,16 +139,16 @@
             transition: background-color 0.3s ease;
         }
 
-        .navbar .btn:hover {
+        .navbar .nav-buttons .btn:hover {
             background-color: #e0e0e0;
         }
 
-        .navbar .btn.secondary {
+        .navbar .nav-buttons .btn.secondary {
             background-color: #fff;
             color: #000;
         }
 
-        .navbar .btn.secondary:hover {
+        .navbar .nav-buttons .btn.secondary:hover {
             background-color: #f0f0f0;
         }
 
@@ -182,9 +181,9 @@
         .hero {
             position: relative;
             max-width: 90%;
-            margin: 20px auto; /* Reduced top margin to move upwards */
+            margin: 20px auto;
             overflow: hidden;
-            border-radius: 10px; /* Optional: slight modern touch */
+            border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
@@ -192,45 +191,6 @@
             width: 100%;
             display: block;
             height: auto;
-        }
-
-        .hero .banner {
-            position: absolute;
-            right: 0;
-            bottom: 20%;
-            background-color: #2f75b5;
-            color: #fff;
-            padding: 40px 40px;
-            border-radius: 50% 0 0 50%;
-            max-width: 350px;
-            text-align: center;
-        }
-
-        .hero .banner h2 {
-            font-size: 32px;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .hero .banner p {
-            font-size: 16px;
-            margin-bottom: 20px;
-        }
-
-        .hero .banner button {
-            background-color: #000;
-            color: #fff;
-            border: none;
-            padding: 10px 24px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            transition: background-color 0.3s ease;
-        }
-
-        .hero .banner button:hover {
-            background-color: #333;
         }
 
         /* General Section */
@@ -256,16 +216,41 @@
             margin-right: auto;
         }
 
-        .cards {
-            display: flex;
+        /* Marquee Effect for Cards */
+        .cards-marquee {
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+            position: relative;
+        }
+
+        .cards-marquee .cards-inner {
+            display: inline-flex;
             gap: 30px;
-            justify-content: center;
-            flex-wrap: wrap;
+            animation: marquee 20s linear infinite;
+        }
+
+        .cards-marquee .cards-inner > * {
+            flex-shrink: 0;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .cards-marquee:hover .cards-inner {
+            animation-play-state: paused;
         }
 
         .card {
             text-align: center;
             cursor: pointer;
+            width: 250px;
         }
 
         .card img {
@@ -322,6 +307,7 @@
             padding: 60px 40px;
             text-align: center;
             margin-bottom: 60px;
+            position: relative;
         }
 
         .special h2 {
@@ -344,6 +330,7 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
 
         .special-image img {
@@ -352,20 +339,47 @@
             height: auto;
         }
 
-        .special-caption {
-            max-width: 800px;
-            margin: 0 auto;
+        .special .banner {
+            position: absolute;
+            right: 0;
+            bottom: 20%;
+            background-color: #2f75b5;
+            color: #fff;
+            padding: 40px 40px;
+            border-radius: 50% 0 0 50%;
+            max-width: 350px;
+            text-align: center;
         }
 
-        .special-caption h3 {
-            font-size: 24px;
-            font-weight: 500;
-            margin: 0 0 10px;
+        .special .banner h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: 700;
         }
 
-        .special-caption p {
+        .special .banner p {
             font-size: 16px;
-            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .special .banner button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .special .banner button:hover {
+            background-color: #333;
+        }
+
+        .special.banner a{
+            color: white;
         }
 
         /* Footer */
@@ -424,7 +438,7 @@
             transform: scale(1.1);
         }
 
-        /* Minor improvements: Basic responsiveness for mobile */
+        /* Responsive adjustments */
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
@@ -443,12 +457,26 @@
                 justify-content: center;
             }
 
-            .cards {
-                flex-direction: column;
+            .cards-marquee {
+                overflow-x: auto;
+                scroll-behavior: smooth;
+            }
+
+            .cards-marquee .cards-inner {
+                animation: none;
+                display: flex;
+                flex-wrap: nowrap;
             }
 
             .hero {
                 max-width: 90%;
+            }
+
+            .special .banner {
+                padding: 20px;
+                max-width: 100%;
+                border-radius: 10px;
+                bottom: 10px;
             }
         }
     </style>
@@ -465,7 +493,6 @@
             <a href="index.html">Home</a>
             <a href="About.html">About Us</a>
             <a href="TestFlight.html">Test Flight</a>
-            <!-- Categories with Dropdown -->
             <div class="dropdown">
                 <span class="dropbtn">Categories</span>
                 <div class="dropdown-content">
@@ -492,33 +519,47 @@
     <!-- Hero Section -->
     <div class="hero">
         <img src="Assets/SR-72 DarkStar.png" alt="SR-72 DarkStar">
-        <div class="banner">
-            <h2>SR-72 DarkStar</h2>
-            <p>2025 edition</p>
-            <button>Read more</button>
-        </div>
     </div>
 
     <!-- Military Collections -->
     <div class="section" id="categories">
         <h2>Military Collections</h2>
         <p>Enjoy the raw power</p>
-        <div class="cards">
-            <div class="card">
-                <img src="Assets/F-16 in air.png" alt="F-16">
-                <a href="f16.html">F-16</a>
-            </div>
-            <div class="card">
-                <img src="Assets/F-22 Raptor.png" alt="F-22 Raptor">
-                <a href="f22-raptor.html">F-22 Raptor</a>
-            </div>
-            <div class="card">
-                <img src="Assets/F-35 Lightning ii.png" alt="F-35 Lightning II">
-                <a href="f35-lightning-ii.html">F-35 Lightning II</a>
-            </div>
-            <div class="card">
-                <img src="Assets/F-15.png" alt="F-15">
-                <a href="f15.html">F-15</a>
+        <div class="cards-marquee">
+            <div class="cards-inner">
+                <div class="card">
+                    <img src="Assets/F-16 in air.png" alt="F-16">
+                    <a href="f16.html">F-16</a>
+                </div>
+                <div class="card">
+                    <img src="Assets/F-22 Raptor.png" alt="F-22 Raptor">
+                    <a href="f22-raptor.html">F-22 Raptor</a>
+                </div>
+                <div class="card">
+                    <img src="Assets/F-35 Lightning ii.png" alt="F-35 Lightning II">
+                    <a href="f35-lightning-ii.html">F-35 Lightning II</a>
+                </div>
+                <div class="card">
+                    <img src="Assets/F-15.png" alt="F-15">
+                    <a href="f15.html">F-15</a>
+                </div>
+                <!-- Duplicate cards for seamless marquee loop -->
+                <div class="card">
+                    <img src="Assets/F-16 in air.png" alt="F-16">
+                    <a href="f16.html">F-16</a>
+                </div>
+                <div class="card">
+                    <img src="Assets/F-22 Raptor.png" alt="F-22 Raptor">
+                    <a href="f22-raptor.html">F-22 Raptor</a>
+                </div>
+                <div class="card">
+                    <img src="Assets/F-35 Lightning ii.png" alt="F-35 Lightning II">
+                    <a href="f35-lightning-ii.html">F-35 Lightning II</a>
+                </div>
+                <div class="card">
+                    <img src="Assets/F-15.png" alt="F-15">
+                    <a href="f15.html">F-15</a>
+                </div>
             </div>
         </div>
         <div class="see-more">
@@ -530,22 +571,41 @@
     <div class="section">
         <h2>Commercial Collections</h2>
         <p>Enjoy the raw power</p>
-        <div class="cards">
-            <div class="card">
-                <img src="Assets/Boeing 747.jpg" alt="Boeing 747">
-                <a href="boeing-747.html">Boeing 747</a>
-            </div>
-            <div class="card">
-                <img src="Assets/airbus_a380_on_the_ground.jpg" alt="Airbus A380">
-                <a href="airbus-a380.html">Airbus A380</a>
-            </div>
-            <div class="card">
-                <img src="Assets/Boeing 747.jpg" alt="Boeing 747">
-                <a href="boeing-747.html">Boeing 747</a>
-            </div>
-            <div class="card">
-                <img src="Assets/Airbus A320.jpg" alt="Airbus A320">
-                <a href="airbus-a320.html">Airbus A320</a>
+        <div class="cards-marquee">
+            <div class="cards-inner">
+                <div class="card">
+                    <img src="Assets/Boeing 747.jpg" alt="Boeing 747">
+                    <a href="boeing-747.html">Boeing 747</a>
+                </div>
+                <div class="card">
+                    <img src="Assets/airbus_a380_on_the_ground.jpg" alt="Airbus A380">
+                    <a href="airbus-a380.html">Airbus A380</a>
+                </div>
+                <div class="card">
+                    <img src="Assets/Boeing 747.jpg" alt="Boeing 747">
+                    <a href="boeing-747.html">Boeing 747</a>
+                </div>
+                <div class="card">
+                    <img src="Assets/Airbus A320.jpg" alt="Airbus A320">
+                    <a href="airbus-a320.html">Airbus A320</a>
+                </div>
+                <!-- Duplicate cards for seamless marquee loop -->
+                <div class="card">
+                    <img src="Assets/Boeing 747.jpg" alt="Boeing 747">
+                    <a href="boeing-747.html">Boeing 747</a>
+                </div>
+                <div class="card">
+                    <img src="Assets/airbus_a380_on_the_ground.jpg" alt="Airbus A380">
+                    <a href="airbus-a380.html">Airbus A380</a>
+                </div>
+                <div class="card">
+                    <img src="Assets/Boeing 747.jpg" alt="Boeing 747">
+                    <a href="boeing-747.html">Boeing 747</a>
+                </div>
+                <div class="card">
+                    <img src="Assets/Airbus A320.jpg" alt="Airbus A320">
+                    <a href="airbus-a320.html">Airbus A320</a>
+                </div>
             </div>
         </div>
         <div class="see-more">
@@ -561,10 +621,11 @@
         reconnaissance, and potentially strike missions at speeds exceeding Mach 6.</h4>
         <div class="special-image">
             <img src="Assets/SR-72 DarkStar.png" alt="SR-72 DarkStar">
-        </div>
-        <div class="special-caption">
-            <h3>Raptor X300</h3>
-            <p>2023 edition</p>
+            <div class="banner">
+                <h2>SR-72 DarkStar</h2>
+                <p>2025 edition</p>
+                <button><a href="https://en.wikipedia.org/wiki/Lockheed_Martin_SR-72">Read More</a></button>
+            </div>
         </div>
     </div>
 
