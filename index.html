@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IronWINGS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #fff;
+            color: #000;
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #080320;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 40px;
+            height: 70px; /* Fixed height to maintain dimensions while enlarging logo */
+        }
+
+        .navbar .logo {
+            height: 50px; /* Larger logo */
+            width: auto;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #ccc;
+        }
+
+        .navbar .nav-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .btn {
+            background-color: #f5f8f5;
+            color: #1a1919;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-left: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar .btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .navbar .btn.secondary {
+            background-color: #45c15c;
+            color: #fff;
+        }
+
+        .navbar .btn.secondary:hover {
+            background-color: #3aa04f;
+        }
+
+        /* About Section */
+        .about {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 40px;
+            text-align: center;
+        }
+
+        .about h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .about h3 {
+            font-size: 20px;
+            font-weight: 400;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Hero section */
+        .hero {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .hero img {
+            width: 100%;
+            display: block;
+            height: auto;
+        }
+
+        .hero .banner {
+            position: absolute;
+            right: 0;
+            bottom: 20%;
+            background-color: #2f75b5;
+            color: #fff;
+            padding: 40px 40px;
+            border-radius: 50% 0 0 50%;
+            max-width: 350px;
+            text-align: center;
+        }
+
+        .hero .banner h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .hero .banner p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .hero .banner button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .hero .banner button:hover {
+            background-color: #333;
+        }
+
+        /* General Section */
+        .section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 40px;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .section p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cards {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cards img {
+            width: 250px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .cards img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .section .see-more {
+            margin-top: 30px;
+        }
+
+        .section .see-more button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .section .see-more button:hover {
+            background-color: #333;
+        }
+
+        /* Special Edition */
+        .special {
+            background-color: #f9f9f9;
+            padding: 60px 40px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .special h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .special h4 {
+            font-size: 18px;
+            font-weight: 400;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        .special-image {
+            max-width: 1000px;
+            margin: 0 auto 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .special-image img {
+            width: 100%;
+            display: block;
+            height: auto;
+        }
+
+        .special-caption {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .special-caption h3 {
+            font-size: 24px;
+            font-weight: 500;
+            margin: 0 0 10px;
+        }
+
+        .special-caption p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #080320;
+            color: #fff;
+            padding: 60px 40px;
+            font-size: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+        }
+
+        .footer .links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer .links a {
+            color: #fff;
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .footer .links a:hover {
+            color: #ccc;
+        }
+
+        .footer .copyright {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .footer .copyright p {
+            margin-bottom: 10px;
+        }
+
+        .footer .social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer .social img {
+            height: 24px;
+            width: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .footer .social img:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <img class="logo" src="Assets/Logo Dark Theme.png" alt="Iron Wings Logo">
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About Us</a>
+            <a href="#Categories">Categories</a>
+            <a href="#pricing">Our Services</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="nav-buttons">
+            <button class="btn">Your Cart</button>
+            <button class="btn">Sign Up</button>
+            <button class="btn secondary">Login</button>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div class="about">
+        <h1>IronWINGS: Who are we?</h1>
+        <h3>We are a leading retailer of high-performance aircraft models, offering a diverse range of military and commercial 
+            collections for aviation enthusiasts and collectors worldwide.</h3>
+    </div>
+    
+    <!-- Hero Section -->
+    <div class="hero">
+        <img src="Assets/SR-72 BlackBird.jpg" alt="SR-72 DarkStar">
+        <div class="banner">
+            <h2>SR-72 DarkStar</h2>
+            <p>2025 edition</p>
+            <button>Read more</button>
+        </div>
+    </div>
+
+    <!-- Military Collections -->
+    <div class="section">
+        <h2>Military Collections</h2>
+        <p>Enjoy the raw power</p>
+        <div class="cards">
+            <img src="Assets/F-16 in air.png" alt="Plane 1">
+            <img src="Assets/F-22 Raptor.png" alt="Plane 2">
+            <img src="Assets/F-35 Lightning ii.png" alt="Plane 3">
+            <img src="Assets/F-15.png" alt="Plane 4">
+        </div>
+        <div class="see-more">
+            <button>See more</button>
+        </div>
+    </div>
+
+    <!-- Commercial Collections -->
+    <div class="section">
+        <h2>Commercial Collections</h2>
+        <p>Enjoy the raw power</p>
+        <div class="cards">
+            <img src="Assets/F-16 in air.png" alt="Plane 1">
+            <img src="Assets/F-22 Raptor.png" alt="Plane 2">
+            <img src="Assets/F-35 Lightning ii.png" alt="Plane 3">
+            <img src="Assets/F-15.png" alt="Plane 4">
+        </div>
+        <div class="see-more">
+            <button>See more</button>
+        </div>
+    </div>
+
+    <!-- Special Edition -->
+    <div class="special">
+        <h2>One of it's Kind</h2>
+        <h4>The Lockheed Martin SR-72 "Darkstar" is a conceptual hypersonic aircraft,
+        envisioned as the successor to the SR-71 Blackbird, designed for intelligence, surveillance,
+        reconnaissance, and potentially strike missions at speeds exceeding Mach 6.</h4>
+        <div class="special-image">
+            <img src="Assets/SR-72 DarkStar.png" alt="SR-72 DarStar">
+        </div>
+        <div class="special-caption">
+            <h3>Raptor X300</h3>
+            <p>2023 edition</p>
+        </div>
+    </div>
+
+    <!-- Most Popular -->
+    <div class="section">
+        <h2>Most popular</h2>
+        <p>Our popular picks</p>
+        <div class="cards">
+            <img src="Assets/plane1.jpg" alt="Plane 1">
+            <img src="Assets/plane2.jpg" alt="Plane 2">
+            <img src="Assets/plane3.jpg" alt="Plane 3">
+            <img src="Assets/plane4.jpg" alt="Plane 4">
+        </div>
+        <div class="see-more">
+            <button>See more</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="links">
+            <a href="#">Menu</a>
+            <a href="#">Find a Store</a>
+            <a href="#">Sign up for Email</a>
+            <a href="#">Send us Feedback</a>
+        </div>
+        <div class="links">
+            <a href="#">Helpdesk</a>
+            <a href="#">Order Status</a>
+            <a href="#">Delivery</a>
+            <a href="#">Payment Options</a>
+        </div>
+        <div class="links">
+            <a href="#">About IronWINGS</a>
+            <a href="#">Careers</a>
+            <a href="#">Investors</a>
+        </div>
+        <div class="copyright">
+            <p>© 2025 IronWINGS, Inc. All Rights Reserved</p>
+            <p>516, Bhagat Singh Hostel, BML Munjal University</p>
+            <p>67th Milestone, Gurgaon, INDIA</p>
+            <div class="social">
+                <a href="#"><img src="https://via.placeholder.com/20?text=F" alt="Facebook"></a>
+                <a href="#"><img src="https://via.placeholder.com/20?text=T" alt="Twitter"></a>
+                <a href="#"><img src="https://via.placeholder.com/20?text=I" alt="Instagram"></a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
