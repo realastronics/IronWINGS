@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - IronWINGS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #fff;
+            color: #000;
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #080320;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 40px;
+            height: 80px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-container .logo {
+            height: 60px;
+            width: auto;
+            margin-right: 15px;
+        }
+
+        .logo-container .brand-name {
+            color: #fff;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #ccc;
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown .dropbtn {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            margin: 0 20px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .dropdown .dropbtn:hover {
+            color: #ccc;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #080320;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            top: 100%;
+            left: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        .dropdown-content a {
+            color: #fff;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            font-weight: 400;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #2f75b5;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .navbar .nav-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .btn {
+            background-color: #f5f8f5;
+            color: #1a1919;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-left: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar .btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .navbar .btn.secondary {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .navbar .btn.secondary:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* General Section */
+        .section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 40px;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .section p {
+            font-size: 18px;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        /* Company Intro */
+        .company-intro {
+            text-align: center;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: #080320;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 40px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-date {
+            width: 45%;
+            text-align: right;
+            padding-right: 20px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .timeline-item:nth-child(even) .timeline-date {
+            text-align: left;
+            padding-left: 20px;
+            padding-right: 0;
+        }
+
+        .timeline-content {
+            width: 45%;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            text-align: right;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            background-color: #2f75b5;
+            border-radius: 50%;
+        }
+
+        /* Team */
+        .team-cards {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .team-card {
+            width: 300px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .team-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .team-card h3 {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .team-card p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* Where Why How */
+        .where-why-how p {
+            text-align: left;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        /* FAQs */
+        .faq-item {
+            max-width: 800px;
+            margin: 20px auto;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .faq-question {
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 0;
+        }
+
+        .faq-answer {
+            display: none;
+            font-size: 16px;
+            color: #555;
+            padding-top: 10px;
+        }
+
+        /* For simplicity, use CSS for accordion; in real, add JS if needed */
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '-';
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #080320;
+            color: #fff;
+            padding: 60px 40px;
+            font-size: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+        }
+
+        .footer .links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer .links a {
+            color: #fff;
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .footer .links a:hover {
+            color: #ccc;
+        }
+
+        .footer .copyright {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .footer .copyright p {
+            margin-bottom: 10px;
+        }
+
+        .footer .social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer .social img {
+            height: 24px;
+            width: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .footer .social img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Minor improvements: Basic responsiveness for mobile */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                height: auto;
+                padding: 20px;
+            }
+
+            .navbar .nav-links {
+                margin: 10px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .navbar .nav-buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+            }
+
+            .timeline-date, .timeline-content {
+                width: 100%;
+                text-align: center !important;
+                padding: 0;
+            }
+
+            .timeline-date {
+                margin-bottom: 10px;
+            }
+
+            .timeline-item:nth-child(even) {
+                flex-direction: column;
+            }
+
+            .team-cards {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo-container">
+            <img class="logo" src="Assets/Logo Dark Theme.png" alt="Iron Wings Logo">
+            <span class="brand-name">IronWINGS</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a> <!-- Link back to home -->
+            <a href="#about.html">About Us</a>
+            <div class="dropdown">
+                <span class="dropbtn">Categories</span>
+                <div class="dropdown-content">
+                    <a href="military.html">Military</a>
+                    <a href="commercial.html">Commercial</a>
+                    <a href="accessories.html">Accessories</a>
+                </div>
+            </div>
+            <a href="#services.html">Our Services</a>
+            <a href="#Contact.html">Contact</a>
+        </div>
+        <div class="nav-buttons">
+            <button class="btn">Your Cart</button>
+            <button class="btn">Sign Up</button>
+            <button class="btn secondary">Login</button>
+        </div>
+    </div>
+
+    <!-- Company and What We Do -->
+    <div class="section company-intro">
+        <h2>Our Company</h2>
+        <p>IronWINGS is a leading retailer of high-performance aircraft models, specializing in military and commercial collections for aviation enthusiasts and collectors worldwide. We curate premium scale models that capture the essence of aviation history and innovation, ensuring quality and authenticity in every piece.</p>
+    </div>
+
+    <!-- Our Journey (Timeline) -->
+    <div class="section">
+        <h2>Our Journey</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">2020</div>
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h3>Founded</h3>
+                    <p>IronWINGS was established in Gurgaon, India, with a vision to bring aviation passion to collectors.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2021</div>
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h3>First Collection Launch</h3>
+                    <p>Introduced our inaugural military aircraft models, gaining immediate recognition among enthusiasts.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2023</div>
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h3>Expansion to Commercial Models</h3>
+                    <p>Expanded our lineup to include commercial aviation models and special editions.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">2025</div>
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                    <h3>Global Reach</h3>
+                    <p>Achieved international shipping and partnerships with aviation museums worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Who Are We (Team) -->
+    <div class="section">
+        <h2>Who Are We?</h2>
+        <p>Meet the team behind IronWINGS.</p>
+        <div class="team-cards">
+            <div class="team-card">
+                <img src="https://via.placeholder.com/150?text=John+Doe" alt="Farhan Akhter">
+                <h3>Zaddy Farhan</h3>
+                <p>CEO</p>
+            </div>
+            <div class="team-card">
+                <img src="https://via.placeholder.com/150?text=Jane+Smith" alt="Parth Sharma">
+                <h3>Parth Sharma</h3>
+                <p>CTO</p>
+            </div>
+            <div class="team-card">
+                <img src="https://via.placeholder.com/150?text=Alex+Johnson" alt="Mohak Jain">
+                <h3>Mohak Jain</h3>
+                <p>CMO</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Where, Why, How -->
+    <div class="section where-why-how">
+        <h2>Where, Why, and How</h2>
+        <p><strong>Where:</strong> We are based in Gurgaon, India, at 516, Bhagat Singh Hostel, BML Munjal University, 67th Milestone.</p>
+        <p><strong>Why:</strong> Our passion for aviation drives us to make high-quality models accessible, inspiring the next generation of enthusiasts.</p>
+        <p><strong>How:</strong> We source from trusted manufacturers, ensure authenticity through rigorous quality checks, and deliver worldwide with secure packaging.</p>
+    </div>
+
+    <!-- FAQs -->
+    <div class="section">
+        <h2>FAQs</h2>
+        <div class="faq-item">
+            <div class="faq-question">What materials are the models made from?</div>
+            <div class="faq-answer">Our models are crafted from high-quality die-cast metal and plastic composites for durability and detail.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Do you ship internationally?</div>
+            <div class="faq-answer">Yes, we offer worldwide shipping with tracking.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">What is your return policy?</div>
+            <div class="faq-answer">We accept returns within 30 days if the item is unused and in original packaging.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">How can I contact support?</div>
+            <div class="faq-answer">Reach us via email at support@ironwings.com or through our contact form.</div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="links">
+            <a href="#">Menu</a>
+            <a href="#">Find a Store</a>
+            <a href="#">Sign up for Email</a>
+            <a href="#">Send us Feedback</a>
+        </div>
+        <div class="links">
+            <a href="#">Helpdesk</a>
+            <a href="#">Order Status</a>
+            <a href="#">Delivery</a>
+            <a href="#">Payment Options</a>
+        </div>
+        <div class="links">
+            <a href="#">About IronWINGS</a>
+            <a href="#">Careers</a>
+            <a href="#">Investors</a>
+        </div>
+        <div class="copyright">
+            <p>© 2025 IronWINGS, Inc. All Rights Reserved</p>
+            <p>516, Bhagat Singh Hostel, BML Munjal University</p>
+            <p>67th Milestone, Gurgaon, INDIA</p>
+            <div class="social">
+                <a href="#"><img src="https://via.placeholder.com/20?text=F" alt="Facebook"></a>
+                <a href="#"><img src="https://via.placeholder.com/20?text=T" alt="Twitter"></a>
+                <a href="#"><img src="https://via.placeholder.com/20?text=I" alt="Instagram"></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Simple JS for FAQ accordion -->
+    <script>
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                item.parentElement.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
