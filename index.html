@@ -27,12 +27,25 @@
             align-items: center;
             justify-content: space-between;
             padding: 10px 40px;
-            height: 70px; /* Fixed height to maintain dimensions while enlarging logo */
+            height: 80px; /* Slightly increased height to accommodate larger logo */
         }
 
-        .navbar .logo {
-            height: 50px; /* Larger logo */
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-container .logo {
+            height: 60px; /* Much larger logo */
             width: auto;
+            margin-right: 15px;
+        }
+
+        .logo-container .brand-name {
+            color: #fff;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
 
         .navbar .nav-links {
@@ -51,6 +64,62 @@
 
         .navbar .nav-links a:hover {
             color: #ccc;
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown .dropbtn {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            margin: 0 20px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .dropdown .dropbtn:hover {
+            color: #ccc;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #080320;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            top: 100%;
+            left: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        .dropdown-content a {
+            color: #fff;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            font-weight: 400;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #2f75b5;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .navbar .nav-buttons {
@@ -76,41 +145,47 @@
         }
 
         .navbar .btn.secondary {
-            background-color: #45c15c;
-            color: #fff;
+            background-color: #fff;
+            color: #000;
         }
 
         .navbar .btn.secondary:hover {
-            background-color: #3aa04f;
+            background-color: #f0f0f0;
         }
 
-        /* About Section */
-        .about {
+        /* Tagline Section */
+        .tagline {
             max-width: 1200px;
-            margin: 60px auto;
+            margin: 40px auto 20px;
             padding: 0 40px;
             text-align: center;
         }
 
-        .about h1 {
+        .tagline h1 {
             font-size: 36px;
             font-weight: 700;
             margin-bottom: 20px;
         }
 
-        .about h3 {
-            font-size: 20px;
-            font-weight: 400;
-            color: #555;
-            max-width: 800px;
-            margin: 0 auto;
+        .tagline .shop-now {
+            color: #2f75b5;
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        .tagline .shop-now:hover {
+            color: #1a4a7a;
         }
 
         /* Hero section */
         .hero {
             position: relative;
-            width: 100%;
+            max-width: 90%;
+            margin: 20px auto; /* Reduced top margin to move upwards */
             overflow: hidden;
+            border-radius: 10px; /* Optional: slight modern touch */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .hero img {
@@ -188,19 +263,37 @@
             flex-wrap: wrap;
         }
 
-        .cards img {
+        .card {
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .card img {
             width: 250px;
             height: 180px;
             object-fit: cover;
             border-radius: 10px;
-            cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .cards img:hover {
+        .card img:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card a {
+            display: block;
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #000;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .card a:hover {
+            color: #2f75b5;
         }
 
         .section .see-more {
@@ -330,17 +423,57 @@
         .footer .social img:hover {
             transform: scale(1.1);
         }
+
+        /* Minor improvements: Basic responsiveness for mobile */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                height: auto;
+                padding: 20px;
+            }
+
+            .navbar .nav-links {
+                margin: 10px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .navbar .nav-buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .cards {
+                flex-direction: column;
+            }
+
+            .hero {
+                max-width: 90%;
+            }
+        }
     </style>
 </head>
 
 <body>
     <!-- Navbar -->
     <div class="navbar">
-        <img class="logo" src="Assets/Logo Dark Theme.png" alt="Iron Wings Logo">
+        <div class="logo-container">
+            <img class="logo" src="Assets/Logo Dark Theme.png" alt="Iron Wings Logo">
+            <span class="brand-name">IronWINGS</span>
+        </div>
         <div class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#about">About Us</a>
-            <a href="#Categories">Categories</a>
+            <a href="index.html">Home</a>
+            <a href="About.html">About Us</a>
+            <a href="TestFlight.html">Test Flight</a>
+            <!-- Categories with Dropdown -->
+            <div class="dropdown">
+                <span class="dropbtn">Categories</span>
+                <div class="dropdown-content">
+                    <a href="military.html">Military</a>
+                    <a href="commercial.html">Commercial</a>
+                    <a href="accessories.html">Accessories</a>
+                </div>
+            </div>
             <a href="#pricing">Our Services</a>
             <a href="#contact">Contact</a>
         </div>
@@ -351,16 +484,14 @@
         </div>
     </div>
 
-    <!-- About Section -->
-    <div class="about">
-        <h1>IronWINGS: Who are we?</h1>
-        <h3>We are a leading retailer of high-performance aircraft models, offering a diverse range of military and commercial 
-            collections for aviation enthusiasts and collectors worldwide.</h3>
+    <!-- Tagline Section -->
+    <div class="tagline">
+        <h1>IronWINGS, where your dreams truly FLY. <a href="#categories" class="shop-now">Shop Now</a>.</h1>
     </div>
     
     <!-- Hero Section -->
     <div class="hero">
-        <img src="Assets/SR-72 BlackBird.jpg" alt="SR-72 DarkStar">
+        <img src="Assets/SR-72 DarkStar.png" alt="SR-72 DarkStar">
         <div class="banner">
             <h2>SR-72 DarkStar</h2>
             <p>2025 edition</p>
@@ -369,14 +500,26 @@
     </div>
 
     <!-- Military Collections -->
-    <div class="section">
+    <div class="section" id="categories">
         <h2>Military Collections</h2>
         <p>Enjoy the raw power</p>
         <div class="cards">
-            <img src="Assets/F-16 in air.png" alt="Plane 1">
-            <img src="Assets/F-22 Raptor.png" alt="Plane 2">
-            <img src="Assets/F-35 Lightning ii.png" alt="Plane 3">
-            <img src="Assets/F-15.png" alt="Plane 4">
+            <div class="card">
+                <img src="Assets/F-16 in air.png" alt="F-16">
+                <a href="f16.html">F-16</a>
+            </div>
+            <div class="card">
+                <img src="Assets/F-22 Raptor.png" alt="F-22 Raptor">
+                <a href="f22-raptor.html">F-22 Raptor</a>
+            </div>
+            <div class="card">
+                <img src="Assets/F-35 Lightning ii.png" alt="F-35 Lightning II">
+                <a href="f35-lightning-ii.html">F-35 Lightning II</a>
+            </div>
+            <div class="card">
+                <img src="Assets/F-15.png" alt="F-15">
+                <a href="f15.html">F-15</a>
+            </div>
         </div>
         <div class="see-more">
             <button>See more</button>
@@ -388,10 +531,22 @@
         <h2>Commercial Collections</h2>
         <p>Enjoy the raw power</p>
         <div class="cards">
-            <img src="Assets/F-16 in air.png" alt="Plane 1">
-            <img src="Assets/F-22 Raptor.png" alt="Plane 2">
-            <img src="Assets/F-35 Lightning ii.png" alt="Plane 3">
-            <img src="Assets/F-15.png" alt="Plane 4">
+            <div class="card">
+                <img src="Assets/Boeing 747.jpg" alt="Boeing 747">
+                <a href="boeing-747.html">Boeing 747</a>
+            </div>
+            <div class="card">
+                <img src="Assets/airbus_a380_on_the_ground.jpg" alt="Airbus A380">
+                <a href="airbus-a380.html">Airbus A380</a>
+            </div>
+            <div class="card">
+                <img src="Assets/Boeing 747.jpg" alt="Boeing 747">
+                <a href="boeing-747.html">Boeing 747</a>
+            </div>
+            <div class="card">
+                <img src="Assets/Airbus A320.jpg" alt="Airbus A320">
+                <a href="airbus-a320.html">Airbus A320</a>
+            </div>
         </div>
         <div class="see-more">
             <button>See more</button>
@@ -400,12 +555,12 @@
 
     <!-- Special Edition -->
     <div class="special">
-        <h2>One of it's Kind</h2>
+        <h2>One of its Kind</h2>
         <h4>The Lockheed Martin SR-72 "Darkstar" is a conceptual hypersonic aircraft,
         envisioned as the successor to the SR-71 Blackbird, designed for intelligence, surveillance,
         reconnaissance, and potentially strike missions at speeds exceeding Mach 6.</h4>
         <div class="special-image">
-            <img src="Assets/SR-72 DarkStar.png" alt="SR-72 DarStar">
+            <img src="Assets/SR-72 DarkStar.png" alt="SR-72 DarkStar">
         </div>
         <div class="special-caption">
             <h3>Raptor X300</h3>
