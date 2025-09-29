@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance - IronWINGS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #fff;
+            color: #000;
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #080320;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 40px;
+            height: 80px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-container .logo {
+            height: 60px;
+            width: auto;
+            margin-right: 15px;
+        }
+
+        .logo-container .brand-name {
+            color: #fff;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #ccc;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown .dropbtn {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            margin: 0 20px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .dropdown .dropbtn:hover {
+            color: #ccc;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #080320;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            top: 100%;
+            left: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        .dropdown-content a {
+            color: #fff;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            font-weight: 400;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #2f75b5;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .navbar .nav-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .nav-buttons .btn {
+            background-color: #f5f8f5;
+            color: #1a1919;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-left: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar .nav-buttons .btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .navbar .nav-buttons .btn.secondary {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .navbar .nav-buttons .btn.secondary:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Intro Section */
+        .intro-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 40px;
+            text-align: center;
+        }
+
+        .intro-section h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .intro-section p {
+            font-size: 18px;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        /* Images Section */
+        .images-section {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            padding: 0 40px;
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .image-card {
+            width: 45%;
+            text-align: center;
+        }
+
+        .image-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+
+        .image-card h3 {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .image-card p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* Form Section */
+        .form-section {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            padding: 0 40px;
+            text-align: center;
+        }
+
+        .form-section h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .form-section form {
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #f9f9f9;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-section label {
+            font-size: 16px;
+            font-weight: 500;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+
+        .form-section select,
+        .form-section textarea,
+        .form-section input[type="date"] {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-section textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .form-section button {
+            background-color: #2f75b5;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .form-section button:hover {
+            background-color: #1a4a7a;
+        }
+
+        /* Estimated Cost */
+        .estimated-cost {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #2f75b5;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #080320;
+            color: #fff;
+            padding: 60px 40px;
+            font-size: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+        }
+
+        .footer .links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer .links a {
+            color: #fff;
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .footer .links a:hover {
+            color: #ccc;
+        }
+
+        .footer .copyright {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .footer .copyright p {
+            margin-bottom: 10px;
+        }
+
+        .footer .social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer .social img {
+            height: 24px;
+            width: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .footer .social img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                height: auto;
+                padding: 20px;
+            }
+
+            .navbar .nav-links {
+                margin: 10px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .navbar .nav-buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .image-card {
+                width: 100%;
+            }
+
+            .form-section form {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo-container">
+            <img class="logo" src="Assets/Logo Dark Theme.png" alt="Iron Wings Logo">
+            <span class="brand-name">IronWINGS</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="About.html">About Us</a>
+            <a href="TestFlight.html">Test Flight</a>
+            <div class="dropdown">
+                <span class="dropbtn">Categories</span>
+                <div class="dropdown-content">
+                    <a href="military.html">Military</a>
+                    <a href="commercial.html">Commercial</a>
+                    <a href="accessories.html">Accessories</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <span class="dropbtn">Our Services</span>
+                <div class="dropdown-content">
+                    <a href="Maintenance.html">Maintenance</a>
+                    <a href="Consult.html">Book a Consult</a>
+                    <a href="Shop.html">Shop with Us</a>
+                </div>
+            </div>
+            <a href="Contact.html">Contact Us</a>
+        </div>
+        <div class="nav-buttons">
+            <button class="btn">Your Cart</button>
+            <button class="btn">Sign Up</button>
+            <button class="btn secondary">
+                <a href="Login.html">Login</a></button>
+        </div>
+    </div>
+
+    <!-- Intro Section -->
+    <div class="intro-section">
+        <h1>Aircraft Maintenance Services</h1>
+        <p>At IronWINGS, we offer top-tier maintenance services to keep your aircraft models in pristine condition. Our certified experts use state-of-the-art tools and genuine parts to ensure longevity and performance. Whether it's routine inspections, repairs, or upgrades, trust us to handle your prized possessions with the utmost care and precision. Extend the life of your collection with our reliable and efficient maintenance solutions.</p>
+    </div>
+
+    <!-- Images Section -->
+    <div class="images-section">
+        <div class="image-card">
+            <img src="Assets/Maintenance Site.jpg" alt="Our Maintenance Site">
+            <h3>Our State-of-the-Art Facility</h3>
+            <p>Equipped with the latest technology for precise aircraft model maintenance and restoration.</p>
+        </div>
+        <div class="image-card">
+            <img src="Assets/Maintenance Crew.jpg" alt="Our Expert Crew">
+            <h3>Our Expert Crew</h3>
+            <p>A team of passionate professionals dedicated to delivering exceptional service for your aviation models.</p>
+        </div>
+    </div>
+
+    <!-- Form Section -->
+    <div class="form-section">
+        <h2>Request Maintenance</h2>
+        <form action="#" method="post">
+            <label for="aircraft">Select Your Aircraft:</label>
+            <select id="aircraft" name="aircraft" required>
+                <option value="">Choose an aircraft...</option>
+                <option value="f16">F-16 Fighting Falcon</option>
+                <option value="f22">F-22 Raptor</option>
+                <option value="f35">F-35 Lightning II</option>
+                <option value="f15">F-15 Eagle</option>
+                <option value="boeing747">Boeing 747</option>
+                <option value="a380">Airbus A380</option>
+                <option value="a320">Airbus A320</option>
+            </select>
+
+            <label for="maintenance-type">Kind of Maintenance Required:</label>
+            <textarea id="maintenance-type" name="maintenance-type" placeholder="Describe the maintenance needed..." required></textarea>
+
+            <label for="last-service">Date of Last Servicing:</label>
+            <input type="date" id="last-service" name="last-service" required>
+
+            <label for="new-service">Preferred Date for New Service:</label>
+            <input type="date" id="new-service" name="new-service" required>
+
+            <button type="submit">Submit Request</button>
+        </form>
+        <div class="estimated-cost">
+            Estimated Cost: $250 - $500 (based on selected options; final quote after assessment)
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="links">
+            <a href="#">Menu</a>
+            <a href="#">Find a Store</a>
+            <a href="#">Sign up for Email</a>
+            <a href="#">Send us Feedback</a>
+        </div>
+        <div class="links">
+            <a href="#">Helpdesk</a>
+            <a href="#">Order Status</a>
+            <a href="#">Delivery</a>
+            <a href="#">Payment Options</a>
+        </div>
+        <div class="links">
+            <a href="#">About IronWINGS</a>
+            <a href="#">Careers</a>
+            <a href="#">Investors</a>
+        </div>
+        <div class="copyright">
+            <p>© 2025 IronWINGS, Inc. All Rights Reserved</p>
+            <p>516, Bhagat Singh Hostel, BML Munjal University</p>
+            <p>67th Milestone, Gurgaon, INDIA</p>
+            <div class="social">
+                <a href="#"><img src="https://via.placeholder.com/20?text=F" alt="Facebook"></a>
+                <a href="#"><img src="https://via.placeholder.com/20?text=T" alt="Twitter"></a>
+                <a href="#"><img src="https://via.placeholder.com/20?text=I" alt="Instagram"></a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
