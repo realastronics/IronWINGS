@@ -60,10 +60,13 @@
             font-size: 16px;
             font-weight: 500;
             transition: color 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
         }
 
         .navbar .nav-links a:hover {
             color: #ccc;
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
         .dropdown {
@@ -143,6 +146,15 @@
             background-color: #e0e0e0;
         }
 
+        .navbar .nav-buttons .btn a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .navbar .nav-buttons .btn:hover a {
+            color: #1a1919;
+        }
+
         .navbar .nav-buttons .btn.secondary {
             background-color: #fff;
             color: #000;
@@ -150,6 +162,10 @@
 
         .navbar .nav-buttons .btn.secondary:hover {
             background-color: #f0f0f0;
+        }
+
+        .navbar .nav-buttons .btn.secondary:hover a {
+            color: #000;
         }
 
         /* Login/Signup Section */
@@ -336,24 +352,31 @@
             <span class="brand-name">IronWINGS</span>
         </div>
         <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="About.html">About Us</a>
-            <a href="TestFlight.html">Test Flight</a>
+            <a href="index.html" style="color: #fff; text-decoration: none;">Home</a>
+            <a href="About.html" style="color: #fff; text-decoration: none;">About Us</a>
+            <a href="TestFlight.html" style="color: #fff; text-decoration: none;">Test Flight</a>
             <div class="dropdown">
-                <span class="dropbtn">Categories</span>
+                <span class="dropbtn" style="color: #fff;">Categories</span>
                 <div class="dropdown-content">
                     <a href="military.html">Military</a>
                     <a href="commercial.html">Commercial</a>
                     <a href="accessories.html">Accessories</a>
                 </div>
             </div>
-            <a href="#pricing">Our Services</a>
-            <a href="#contact">Contact</a>
+            <div class="dropdown">
+                <span class="dropbtn" style="color: #fff;">Our Services</span>
+                <div class="dropdown-content">
+                    <a href="Maintenance.html">Maintenance</a>
+                    <a href="Contact.html?inquiry=consult">Book a Consult</a>
+                    <a href="Shop.html">Shop with Us</a>
+                </div>
+            </div>
+            <a href="Contact.html" style="color: #fff; text-decoration: none;">Contact</a>
         </div>
         <div class="nav-buttons">
-            <button class="btn"><a href="login.html#cart" style="text-decoration: none; color: inherit;">Your Cart</a></button>
-            <button class="btn"><a href="login.html#signup" style="text-decoration: none; color: inherit;">Sign Up</a></button>
-            <button class="btn secondary"><a href="login.html#login" style="text-decoration: none; color: inherit;">Login</a></button>
+            <button class="btn" style="background-color: #f5f8f5; border: none; padding: 10px 20px; border-radius: 20px; font-size: 14px; font-weight: 500; margin-left: 10px; transition: background-color 0.3s ease;"><a href="Login.html#cart" style="text-decoration: none; color: #1a1919;">Your Cart</a></button>
+            <button class="btn" style="background-color: #f5f8f5; border: none; padding: 10px 20px; border-radius: 20px; font-size: 14px; font-weight: 500; margin-left: 10px; transition: background-color 0.3s ease;"><a href="Login.html#signup" style="text-decoration: none; color: #1a1919;">Sign Up</a></button>
+            <button class="btn secondary" style="background-color: #fff; border: none; padding: 10px 20px; border-radius: 20px; font-size: 14px; font-weight: 500; margin-left: 10px; transition: background-color 0.3s ease;"><a href="Login.html#login" style="text-decoration: none; color: #000;">Login</a></button>
         </div>
     </div>
 
