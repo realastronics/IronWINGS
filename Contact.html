@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - IronWINGS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #fff;
+            color: #000;
+            line-height: 1.6;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #080320;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 40px;
+            height: 80px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-container .logo {
+            height: 60px;
+            width: auto;
+            margin-right: 15px;
+        }
+
+        .logo-container .brand-name {
+            color: #fff;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #ccc;
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown .dropbtn {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            margin: 0 20px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .dropdown .dropbtn:hover {
+            color: #ccc;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #080320;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            top: 100%;
+            left: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        .dropdown-content a {
+            color: #fff;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            font-weight: 400;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #2f75b5;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .navbar .nav-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .btn {
+            background-color: #f5f8f5;
+            color: #1a1919;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-left: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar .btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .navbar .btn.secondary {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .navbar .btn.secondary:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Contact Intro */
+        .contact-intro {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 40px;
+            text-align: center;
+        }
+
+        .contact-intro h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .contact-intro p {
+            font-size: 18px;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 40px;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            padding: 0 40px;
+            text-align: center;
+        }
+
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            background-color: #2f75b5;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: #1a4a7a;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            padding: 0 40px;
+            text-align: center;
+        }
+
+        .contact-info h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .contact-info p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #080320;
+            color: #fff;
+            padding: 60px 40px;
+            font-size: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+        }
+
+        .footer .links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer .links a {
+            color: #fff;
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .footer .links a:hover {
+            color: #ccc;
+        }
+
+        .footer .copyright {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .footer .copyright p {
+            margin-bottom: 10px;
+        }
+
+        .footer .social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer .social img {
+            height: 24px;
+            width: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        .footer .social img:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo-container">
+            <img class="logo" src="Assets/Logo Dark Theme.png" alt="Iron Wings Logo">
+            <span class="brand-name">IronWINGS</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="About.html">About Us</a>
+            <a href="TestFlight.html">Test Flight</a>
+            <!-- Categories with Dropdown -->
+            <div class="dropdown">
+                <span class="dropbtn">Categories</span>
+                <div class="dropdown-content">
+                    <a href="military.html">Military</a>
+                    <a href="commercial.html">Commercial</a>
+                    <a href="accessories.html">Accessories</a>
+                </div>
+            </div>
+            <a href="#pricing">Our Services</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="nav-buttons">
+            <button class="btn">Your Cart</button>
+            <button class="btn">Sign Up</button>
+            <button class="btn secondary">Login</button>
+        </div>
+    </div>
+
+    <!-- Contact Intro -->
+    <div class="contact-intro">
+        <h1>Contact Us</h1>
+        <p>We’d love to hear from you! Whether you have questions about our aircraft models, need assistance with an order, or want to provide feedback, our team at IronWINGS is here to help. Reach out to us using the form below or check our contact details.</p>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="contact-form">
+        <form action="#" method="post">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="contact-info">
+        <h2>Contact Information</h2>
+        <p><strong>Address:</strong> 516, Bhagat Singh Hostel, BML Munjal University, 67th Milestone, Gurgaon, INDIA</p>
+        <p><strong>Email:</strong> support@ironwings.com</p>
+        <p><strong>Phone:</strong> +91-123-456-7890</p>
+        <p><strong>Hours:</strong> Monday - Friday, 9:00 AM - 6:00 PM IST</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="links">
+            <a href="#">Menu</a>
+            <a href="#">Find a Store</a>
+            <a href="#">Sign up for Email</a>
+            <a href="#">Send us Feedback</a>
+        </div>
+        <div class="links">
+            <a href="#">Helpdesk</a>
+            <a href="#">Order Status</a>
+            <a href="#">Delivery</a>
+            <a href="#">Payment Options</a>
+        </div>
+        <div class="links">
+            <a href="#">About IronWINGS</a>
+            <a href="#">Careers</a>
+            <a href="#">Investors</a>
+        </div>
+        <div class="copyright">
+            <p>© 2025 IronWINGS, Inc. All Rights Reserved</p>
+            <p>516, Bhagat Singh Hostel, BML Munjal University</p>
+            <p>67th Milestone, Gurgaon, INDIA</p>
+            <div class="social">
+                <a href="#"><img src="https://via.placeholder.com/20?text=F" alt="Facebook"></a>
+                <a href="#"><img src="https://via.placeholder.com/20?text=T" alt="Twitter"></a>
+                <a href="#"><img src="https://via.placeholder.com/20?text=I" alt="Instagram"></a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
