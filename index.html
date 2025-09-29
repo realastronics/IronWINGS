@@ -193,6 +193,45 @@
             height: auto;
         }
 
+        .hero .banner {
+            position: absolute;
+            right: 0;
+            bottom: 20%;
+            background-color: #2f75b5;
+            color: #fff;
+            padding: 40px 40px;
+            border-radius: 50% 0 0 50%;
+            max-width: 350px;
+            text-align: center;
+        }
+
+        .hero .banner h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .hero .banner p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .hero .banner button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        .hero .banner button:hover {
+            background-color: #333;
+        }
+
         /* General Section */
         .section {
             max-width: 1200px;
@@ -378,6 +417,10 @@
             background-color: #333;
         }
 
+        .special.banner a{
+            color: white;
+        }
+
         /* Footer */
         .footer {
             background-color: #080320;
@@ -497,13 +540,20 @@
                     <a href="accessories.html">Accessories</a>
                 </div>
             </div>
-            <a href="#pricing">Our Services</a>
+            <div class="dropdown">
+                <span class="dropbtn">Our Services</span>
+                <div class="dropdown-content">
+                    <a href="maintenance.html">Maintenance</a>
+                    <a href="book-consult.html">Book a Consult</a>
+                    <a href="shop-with-us.html">Shop with Us</a>
+                </div>
+            </div>
             <a href="#contact">Contact</a>
         </div>
         <div class="nav-buttons">
-            <button class="btn"><a href="login.html#cart" style="text-decoration: none; color: inherit;">Your Cart</a></button>
-            <button class="btn"><a href="login.html#signup" style="text-decoration: none; color: inherit;">Sign Up</a></button>
-            <button class="btn secondary"><a href="login.html#login" style="text-decoration: none; color: inherit;">Login</a></button>
+            <button class="btn">Your Cart</button>
+            <button class="btn">Sign Up</button>
+            <button class="btn secondary">Login</button>
         </div>
     </div>
 
@@ -525,7 +575,7 @@
             <div class="cards-inner">
                 <div class="card">
                     <img src="Assets/F-16 in air.png" alt="F-16">
-                    <a href="f16.html">F-16</a>
+                    <a href="F-16.html">F-16 link</a>
                 </div>
                 <div class="card">
                     <img src="Assets/F-22 Raptor.png" alt="F-22 Raptor">
@@ -542,7 +592,7 @@
                 <!-- Duplicate cards for seamless marquee loop -->
                 <div class="card">
                     <img src="Assets/F-16 in air.png" alt="F-16">
-                    <a href="f16.html">F-16</a>
+                    <a href="F-16.html">F-16</a>
                 </div>
                 <div class="card">
                     <img src="Assets/F-22 Raptor.png" alt="F-22 Raptor">
@@ -620,7 +670,7 @@
             <div class="banner">
                 <h2>SR-72 DarkStar</h2>
                 <p>2025 edition</p>
-                <button>Read more</button>
+                <button><a href="https://en.wikipedia.org/wiki/Lockheed_Martin_SR-72">Read More</a></button>
             </div>
         </div>
     </div>
