@@ -15,7 +15,7 @@
 
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #fff;
+            background-color: #f5f5f5;
             color: #000;
             line-height: 1.6;
         }
@@ -28,6 +28,7 @@
             justify-content: space-between;
             padding: 10px 40px;
             height: 80px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .logo-container {
@@ -39,6 +40,11 @@
             height: 60px;
             width: auto;
             margin-right: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container .logo:hover {
+            transform: scale(1.05);
         }
 
         .logo-container .brand-name {
@@ -46,6 +52,11 @@
             font-size: 28px;
             font-weight: 700;
             letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .logo-container:hover .brand-name {
+            color: #ccc;
         }
 
         .navbar .nav-links {
@@ -60,13 +71,15 @@
             font-size: 16px;
             font-weight: 500;
             transition: color 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
         }
 
         .navbar .nav-links a:hover {
             color: #ccc;
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
-        /* Dropdown Styles */
         .dropdown {
             position: relative;
             display: inline-block;
@@ -137,11 +150,12 @@
             font-size: 14px;
             font-weight: 500;
             margin-left: 10px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .navbar .btn:hover {
             background-color: #e0e0e0;
+            transform: translateY(-2px);
         }
 
         .navbar .btn.secondary {
@@ -151,6 +165,7 @@
 
         .navbar .btn.secondary:hover {
             background-color: #f0f0f0;
+            transform: translateY(-2px);
         }
 
         /* Product Intro */
@@ -159,12 +174,17 @@
             margin: 60px auto;
             padding: 0 40px;
             text-align: center;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .product-intro h1 {
             font-size: 36px;
             font-weight: 700;
             margin-bottom: 20px;
+            color: #080320;
         }
 
         .product-intro p {
@@ -195,6 +215,10 @@
             max-width: 1200px;
             margin: 0 auto 60px;
             padding: 0 40px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .details-section h2 {
@@ -202,6 +226,7 @@
             font-weight: 700;
             text-align: center;
             margin-bottom: 30px;
+            color: #080320;
         }
 
         .dimensions-table {
@@ -237,6 +262,10 @@
             padding: 0 40px;
             text-align: center;
             margin-bottom: 60px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .buy-options button {
@@ -249,11 +278,12 @@
             font-size: 18px;
             font-weight: 500;
             margin: 0 10px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .buy-options button:hover {
             background-color: #e68900;
+            transform: translateY(-2px);
         }
 
         .buy-options .add-to-cart {
@@ -262,6 +292,7 @@
 
         .buy-options .add-to-cart:hover {
             background-color: #3aa04f;
+            transform: translateY(-2px);
         }
 
         /* Cart Sidebar */
@@ -290,6 +321,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid #2f75b5;
         }
 
         .close-cart {
@@ -298,6 +330,11 @@
             color: #fff;
             font-size: 24px;
             cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-cart:hover {
+            color: #ccc;
         }
 
         .cart-content {
@@ -317,6 +354,7 @@
         .cart-item h3 {
             font-size: 20px;
             margin-bottom: 10px;
+            color: #080320;
         }
 
         .cart-item p {
@@ -329,6 +367,24 @@
             border-top: 1px solid #ddd;
             font-weight: 700;
             text-align: right;
+            background-color: #f9f9f9;
+        }
+
+        .cart-total button {
+            background-color: #45c15c;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cart-total button:hover {
+            background-color: #3aa04f;
+            transform: translateY(-2px);
         }
 
         .overlay {
@@ -357,6 +413,7 @@
             justify-content: space-between;
             align-items: flex-start;
             gap: 40px;
+            border-top: 2px solid #2f75b5;
         }
 
         .footer .links {
@@ -401,6 +458,34 @@
         .footer .social img:hover {
             transform: scale(1.1);
         }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                height: auto;
+                padding: 20px;
+            }
+
+            .navbar .nav-links {
+                margin: 10px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .navbar .nav-buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .product-intro, .details-section, .buy-options {
+                padding: 20px;
+            }
+
+            .video-section video {
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 
@@ -412,25 +497,31 @@
             <span class="brand-name">IronWINGS</span>
         </div>
         <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="About.html">About Us</a>
-            <a href="TestFlight.html">Test Flight</a>
-            <!-- Categories with Dropdown -->
+            <a href="index.html" style="color: #fff; text-decoration: none;">Home</a>
+            <a href="About.html" style="color: #fff; text-decoration: none;">About Us</a>
+            <a href="TestFlight.html" style="color: #fff; text-decoration: none;">Test Flight</a>
             <div class="dropdown">
-                <span class="dropbtn">Categories</span>
+                <span class="dropbtn" style="color: #fff;">Categories</span>
                 <div class="dropdown-content">
                     <a href="military.html">Military</a>
                     <a href="commercial.html">Commercial</a>
                     <a href="accessories.html">Accessories</a>
                 </div>
             </div>
-            <a href="#pricing">Our Services</a>
-            <a href="#contact">Contact</a>
+            <div class="dropdown">
+                <span class="dropbtn" style="color: #fff;">Our Services</span>
+                <div class="dropdown-content">
+                    <a href="Maintenance.html">Maintenance</a>
+                    <a href="Contact.html?inquiry=consult">Book a Consult</a>
+                    <a href="Shop.html">Shop with Us</a>
+                </div>
+            </div>
+            <a href="Contact.html" style="color: #fff; text-decoration: none;">Contact</a>
         </div>
         <div class="nav-buttons">
-            <button class="btn">Your Cart</button>
-            <button class="btn">Sign Up</button>
-            <button class="btn secondary">Login</button>
+            <button class="btn" style="background-color: #f5f8f5; border: none; padding: 10px 20px; border-radius: 20px; font-size: 14px; font-weight: 500; margin-left: 10px; transition: background-color 0.3s ease;"><a href="Login.html#cart" style="text-decoration: none; color: #1a1919;">Your Cart</a></button>
+            <button class="btn" style="background-color: #f5f8f5; border: none; padding: 10px 20px; border-radius: 20px; font-size: 14px; font-weight: 500; margin-left: 10px; transition: background-color 0.3s ease;"><a href="Login.html#signup" style="text-decoration: none; color: #1a1919;">Sign Up</a></button>
+            <button class="btn secondary" style="background-color: #fff; border: none; padding: 10px 20px; border-radius: 20px; font-size: 14px; font-weight: 500; margin-left: 10px; transition: background-color 0.3s ease;"><a href="Login.html#login" style="text-decoration: none; color: #000;">Login</a></button>
         </div>
     </div>
 
