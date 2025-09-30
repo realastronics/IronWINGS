@@ -127,7 +127,7 @@
             align-items: center;
         }
 
-        .navbar .btn {
+        .navbar .nav-buttons .btn {
             background-color: #f5f8f5;
             color: #1a1919;
             border: none;
@@ -140,16 +140,16 @@
             transition: background-color 0.3s ease;
         }
 
-        .navbar .btn:hover {
+        .navbar .nav-buttons .btn:hover {
             background-color: #e0e0e0;
         }
 
-        .navbar .btn.secondary {
+        .navbar .nav-buttons .btn.secondary {
             background-color: #fff;
             color: #000;
         }
 
-        .navbar .btn.secondary:hover {
+        .navbar .nav-buttons .btn.secondary:hover {
             background-color: #f0f0f0;
         }
 
@@ -187,9 +187,21 @@
             flex-direction: column;
             max-width: 600px;
             margin: 0 auto;
+            background-color: #f9f9f9;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form label {
+            font-size: 16px;
+            font-weight: 500;
+            text-align: left;
+            margin-bottom: 10px;
         }
 
         .contact-form input,
+        .contact-form select,
         .contact-form textarea {
             margin-bottom: 20px;
             padding: 10px;
@@ -294,6 +306,30 @@
         .footer .social img:hover {
             transform: scale(1.1);
         }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                height: auto;
+                padding: 20px;
+            }
+
+            .navbar .nav-links {
+                margin: 10px 0;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .navbar .nav-buttons {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .contact-form form {
+                padding: 20px;
+            }
+        }
     </style>
 </head>
 
@@ -308,7 +344,6 @@
             <a href="index.html">Home</a>
             <a href="About.html">About Us</a>
             <a href="TestFlight.html">Test Flight</a>
-            <!-- Categories with Dropdown -->
             <div class="dropdown">
                 <span class="dropbtn">Categories</span>
                 <div class="dropdown-content">
@@ -317,20 +352,27 @@
                     <a href="accessories.html">Accessories</a>
                 </div>
             </div>
-            <a href="#pricing">Our Services</a>
-            <a href="#contact">Contact</a>
+            <div class="dropdown">
+                <span class="dropbtn">Our Services</span>
+                <div class="dropdown-content">
+                    <a href="Maintenance.html">Maintenance</a>
+                    <a href="Contact.html">Book a Consult</a>
+                    <a href="Categories.html">Shop with Us</a>
+                </div>
+            </div>
+            <a href="Contact.html">Contact</a>
         </div>
         <div class="nav-buttons">
-            <button class="btn">Your Cart</button>
-            <button class="btn">Sign Up</button>
-            <button class="btn secondary">Login</button>
+            <button class="btn"><a href="Cart.html">Your Cart</a></button>
+            <button class="btn"><a href="Login.html#Signup">Sign Up</a></button>
+            <button class="btn secondary"><a href="Login.html">Login</a></button>
         </div>
     </div>
 
     <!-- Contact Intro -->
     <div class="contact-intro">
         <h1>Contact Us</h1>
-        <p>We’d love to hear from you! Whether you have questions about our aircraft models, need assistance with an order, or want to provide feedback, our team at IronWINGS is here to help. Reach out to us using the form below or check our contact details.</p>
+        <p>We'd love to hear from you! Whether you have questions about our aircraft models, need assistance with an order, or want to provide feedback, our team at IronWINGS is here to help. Reach out to us using the form below or check our contact details.</p>
     </div>
 
     <!-- Contact Form -->
@@ -338,6 +380,12 @@
         <form action="#" method="post">
             <input type="text" name="name" placeholder="Your Name" required>
             <input type="email" name="email" placeholder="Your Email" required>
+            <select name="inquiry_type" required>
+                <option value="" disabled selected>Select Type of Inquiry</option>
+                <option value="business">Business Inquiry</option>
+                <option value="complaint">Complaint or Feedback</option>
+                <option value="consult">Booking a Consult</option>
+            </select>
             <textarea name="message" placeholder="Your Message" required></textarea>
             <button type="submit">Send Message</button>
         </form>
@@ -353,32 +401,30 @@
     </div>
 
     <!-- Footer -->
+    
+    <!-- Footer -->
     <div class="footer">
         <div class="links">
-            <a href="#">Menu</a>
-            <a href="#">Find a Store</a>
-            <a href="#">Sign up for Email</a>
-            <a href="#">Send us Feedback</a>
+            <a href="commercial.html">Menu</a>
+            <a href="Contact.html">Find a Store</a>
+            <a href="Contact.html">Send us Feedback</a>
         </div>
         <div class="links">
             <a href="#">Helpdesk</a>
             <a href="#">Order Status</a>
-            <a href="#">Delivery</a>
             <a href="#">Payment Options</a>
         </div>
         <div class="links">
-            <a href="#">About IronWINGS</a>
-            <a href="#">Careers</a>
-            <a href="#">Investors</a>
+            <a href="About.html">About IronWINGS</a>
         </div>
         <div class="copyright">
             <p>© 2025 IronWINGS, Inc. All Rights Reserved</p>
             <p>516, Bhagat Singh Hostel, BML Munjal University</p>
             <p>67th Milestone, Gurgaon, INDIA</p>
             <div class="social">
-                <a href="#"><img src="https://via.placeholder.com/20?text=F" alt="Facebook"></a>
-                <a href="#"><img src="https://via.placeholder.com/20?text=T" alt="Twitter"></a>
-                <a href="#"><img src="https://via.placeholder.com/20?text=I" alt="Instagram"></a>
+                <a href="https://www.facebook.com/profile.php?id=61571381126264"><img src="Assets/facebook.jpg" alt="Facebook"></a>
+                <a href="https://x.com/MohakJain08"><img src="Assets/twitter.png" alt="Twitter"></a>
+                <a href="https://www.instagram.com/farhanakhter_8858a/"><img src="Assets/instagram.png" alt="Instagram"></a>
             </div>
         </div>
     </div>
