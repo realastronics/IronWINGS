@@ -11,6 +11,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -26,8 +27,9 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 10px 40px;
+            padding: 15px 40px;
             height: 80px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .logo-container {
@@ -39,6 +41,11 @@
             height: 60px;
             width: auto;
             margin-right: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container .logo:hover {
+            transform: scale(1.05);
         }
 
         .logo-container .brand-name {
@@ -46,6 +53,11 @@
             font-size: 28px;
             font-weight: 700;
             letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .logo-container:hover .brand-name {
+            color: #ccc;
         }
 
         .navbar .nav-links {
@@ -59,11 +71,14 @@
             margin: 0 20px;
             font-size: 16px;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
         }
 
         .navbar .nav-links a:hover {
             color: #ccc;
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
         .dropdown {
@@ -136,11 +151,12 @@
             font-size: 14px;
             font-weight: 500;
             margin-left: 10px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .navbar .nav-buttons .btn:hover {
             background-color: #e0e0e0;
+            transform: scale(1.05);
         }
 
         .navbar .nav-buttons .btn.secondary {
@@ -150,6 +166,7 @@
 
         .navbar .nav-buttons .btn.secondary:hover {
             background-color: #f0f0f0;
+            transform: scale(1.05);
         }
 
         /* Tagline Section */
@@ -161,9 +178,10 @@
         }
 
         .tagline h1 {
-            font-size: 36px;
+            font-size: 40px;
             font-weight: 700;
             margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .tagline .shop-now {
@@ -177,7 +195,7 @@
             color: #1a4a7a;
         }
 
-        /* Hero section */
+        /* Hero Section */
         .hero {
             position: relative;
             max-width: 90%;
@@ -187,17 +205,18 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .hero img {
+        .hero video {
             width: 100%;
             display: block;
             height: auto;
+            border-radius: 10px;
         }
 
         .hero .banner {
             position: absolute;
             right: 0;
-            bottom: 20%;
-            background-color: #2f75b5;
+            bottom: 15%;
+            background: linear-gradient(90deg, #2f75b5, #1a4a7a);
             color: #fff;
             padding: 40px 40px;
             border-radius: 50% 0 0 50%;
@@ -225,11 +244,12 @@
             cursor: pointer;
             font-size: 14px;
             font-weight: 500;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .hero .banner button:hover {
             background-color: #333;
+            transform: scale(1.05);
         }
 
         /* General Section */
@@ -290,6 +310,8 @@
             text-align: center;
             cursor: pointer;
             width: 250px;
+            border-radius: 10px;
+            overflow: hidden;
         }
 
         .card img {
@@ -321,12 +343,11 @@
         }
 
         .section .see-more {
-            color: #f9f9f9;
             margin-top: 30px;
         }
 
         .section .see-more button {
-            background-color: #000;
+            background-color: #2f75b5;
             color: #fff;
             border: none;
             padding: 10px 24px;
@@ -334,11 +355,17 @@
             cursor: pointer;
             font-size: 14px;
             font-weight: 500;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .section .see-more button:hover {
-            background-color: #333;
+            background-color: #1a4a7a;
+            transform: scale(1.05);
+        }
+
+        .section .see-more button a {
+            color: #fff;
+            text-decoration: none;
         }
 
         /* Special Edition */
@@ -382,8 +409,8 @@
         .special .banner {
             position: absolute;
             right: 0;
-            bottom: 55%;
-            background-color: #2f75b5;
+            bottom: 50%;
+            background: linear-gradient(90deg, #2f75b5, #1a4a7a);
             color: #fff;
             padding: 20px 30px;
             border-radius: 0% 0 100% 100%;
@@ -411,15 +438,17 @@
             cursor: pointer;
             font-size: 14px;
             font-weight: 500;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .special .banner button:hover {
             background-color: #333;
+            transform: scale(1.05);
         }
 
-        .banner a{
+        .banner a {
             color: white;
+            text-decoration: none;
         }
 
         /* Footer */
@@ -469,13 +498,13 @@
         }
 
         .footer .social img {
-            height: 35px;
-            width: 35px;
+            height: 40px;
+            width: 40px;
             transition: transform 0.3s ease;
         }
 
         .footer .social img:hover {
-            transform: scale(1.1);
+            transform: rotate(10deg) scale(1.1);
         }
 
         /* Responsive adjustments */
@@ -509,7 +538,14 @@
             }
 
             .hero {
-                max-width: 90%;
+                max-width: 95%;
+            }
+
+            .hero .banner {
+                padding: 20px;
+                max-width: 100%;
+                border-radius: 10px;
+                bottom: 10px;
             }
 
             .special .banner {
@@ -517,6 +553,20 @@
                 max-width: 100%;
                 border-radius: 10px;
                 bottom: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tagline h1 {
+                font-size: 28px;
+            }
+
+            .hero .banner h2 {
+                font-size: 24px;
+            }
+
+            .hero .banner p {
+                font-size: 14px;
             }
         }
     </style>
@@ -552,10 +602,9 @@
             <a href="Contact.html">Contact</a>
         </div>
         <div class="nav-buttons">
-            <button class="btn">Your Cart</button>
-            <button class="btn">Sign Up</button>
-            <button class="btn secondary">
-                <a href="Login.html">Login</button>
+            <button class="btn"><a href="Login.html#cart" style="text-decoration: none; color: #1a1919;">Your Cart</a></button>
+            <button class="btn"><a href="Login.html#signup" style="text-decoration: none; color: #1a1919;">Sign Up</a></button>
+            <button class="btn secondary"><a href="Login.html#login" style="text-decoration: none; color: #000;">Login</a></button>
         </div>
     </div>
 
@@ -563,50 +612,58 @@
     <div class="tagline">
         <h1>IronWINGS, where your dreams truly FLY. <a href="#categories" class="shop-now">Shop Now</a>.</h1>
     </div>
-    
+
     <!-- Hero Section -->
     <div class="hero">
-        <img src="Assets/SR-72 DarkStar.png" alt="SR-72 DarkStar">
+        <video autoplay muted loop playsinline>
+            <source src="Assets/F-35 Taking off.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="banner">
+            <h2>F-35 Lightning II</h2>
+            <p>Our Best Seller</p>
+            <button><a href="Aircrafts/F-35.html">Shop Now</a></button>
+        </div>
     </div>
 
     <!-- Military Collections -->
     <div class="section" id="categories">
         <h2>Military Collections</h2>
-        <p>Enjoy the raw power</p>
+        <p>Experience the raw power of our military aircraft models.</p>
         <div class="cards-marquee">
             <div class="cards-inner">
                 <div class="card">
                     <img src="Assets/F-16 in air.png" alt="F-16">
-                    <a href="F-16.html">F-16 link</a>
+                    <a href="Aircrafts/F-16.html">F-16</a>
                 </div>
                 <div class="card">
                     <img src="Assets/F-22 Raptor.png" alt="F-22 Raptor">
-                    <a href="f22-raptor.html">F-22 Raptor</a>
+                    <a href="Aircrafts/F-22.html">F-22 Raptor</a>
                 </div>
                 <div class="card">
                     <img src="Assets/F-35 Lightning ii.png" alt="F-35 Lightning II">
-                    <a href="f35-lightning-ii.html">F-35 Lightning II</a>
+                    <a href="Aircrafts/F-35.html">F-35 Lightning II</a>
                 </div>
                 <div class="card">
-                    <img src="Assets/F-15.png" alt="F-15">
-                    <a href="f15.html">F-15</a>
+                    <img src="Assets/F-18.png" alt="F-18">
+                    <a href="Aircrafts/F-18.html">F-18 Super Hornet</a>
                 </div>
                 <!-- Duplicate cards for seamless marquee loop -->
                 <div class="card">
                     <img src="Assets/F-16 in air.png" alt="F-16">
-                    <a href="F-16.html">F-16</a>
+                    <a href="Aircrafts/F-16.html">F-16</a>
                 </div>
                 <div class="card">
                     <img src="Assets/F-22 Raptor.png" alt="F-22 Raptor">
-                    <a href="f22-raptor.html">F-22 Raptor</a>
+                    <a href="Aircrafts/F-22.html">F-22 Raptor</a>
                 </div>
                 <div class="card">
                     <img src="Assets/F-35 Lightning ii.png" alt="F-35 Lightning II">
-                    <a href="f35-lightning-ii.html">F-35 Lightning II</a>
+                    <a href="Aircrafts/F-35.html">F-35 Lightning II</a>
                 </div>
                 <div class="card">
-                    <img src="Assets/F-15.png" alt="F-15">
-                    <a href="f15.html">F-15</a>
+                    <img src="Assets/F-18.png" alt="F-18">
+                    <a href="Aircrafts/F-18.html">F-18 Super Hornet</a>
                 </div>
             </div>
         </div>
@@ -618,55 +675,53 @@
     <!-- Commercial Collections -->
     <div class="section">
         <h2>Commercial Collections</h2>
-        <p>Enjoy the raw power</p>
+        <p>Explore the elegance of our commercial aircraft models.</p>
         <div class="cards-marquee">
             <div class="cards-inner">
                 <div class="card">
                     <img src="Assets/Boeing 747.jpg" alt="Boeing 747">
-                    <a href="boeing-747.html">Boeing 747</a>
+                    <a href="Aircrafts/boeing-747.html">Boeing 747</a>
                 </div>
                 <div class="card">
                     <img src="Assets/airbus_a380_on_the_ground.jpg" alt="Airbus A380">
-                    <a href="airbus-a380.html">Airbus A380</a>
+                    <a href="Aircrafts/airbus-a380.html">Airbus A380</a>
                 </div>
                 <div class="card">
                     <img src="Assets/Boeing 747.jpg" alt="Boeing 747">
-                    <a href="boeing-747.html">Boeing 747</a>
+                    <a href="Aircrafts/boeing-747.html">Boeing 747</a>
                 </div>
                 <div class="card">
                     <img src="Assets/Airbus A320.jpg" alt="Airbus A320">
-                    <a href="airbus-a320.html">Airbus A320</a>
+                    <a href="Aircrafts/airbus-a320.html">Airbus A320</a>
                 </div>
                 <!-- Duplicate cards for seamless marquee loop -->
                 <div class="card">
                     <img src="Assets/Boeing 747.jpg" alt="Boeing 747">
-                    <a href="boeing-747.html">Boeing 747</a>
+                    <a href="Aircrafts/boeing-747.html">Boeing 747</a>
                 </div>
                 <div class="card">
                     <img src="Assets/airbus_a380_on_the_ground.jpg" alt="Airbus A380">
-                    <a href="airbus-a380.html">Airbus A380</a>
+                    <a href="Aircrafts/airbus-a380.html">Airbus A380</a>
                 </div>
                 <div class="card">
                     <img src="Assets/Boeing 747.jpg" alt="Boeing 747">
-                    <a href="boeing-747.html">Boeing 747</a>
+                    <a href="Aircrafts/boeing-747.html">Boeing 747</a>
                 </div>
                 <div class="card">
                     <img src="Assets/Airbus A320.jpg" alt="Airbus A320">
-                    <a href="airbus-a320.html">Airbus A320</a>
+                    <a href="Aircrafts/airbus-a320.html">Airbus A320</a>
                 </div>
             </div>
         </div>
         <div class="see-more">
-            <button><a href="commercial.html"> See more</a></button>
+            <button><a href="commercial.html">See more</a></button>
         </div>
     </div>
 
     <!-- Special Edition -->
     <div class="special">
         <h2>One of its Kind</h2>
-        <h4>The Lockheed Martin SR-72 "Darkstar" is a conceptual hypersonic aircraft,
-        envisioned as the successor to the SR-71 Blackbird, designed for intelligence, surveillance,
-        reconnaissance, and potentially strike missions at speeds exceeding Mach 6.</h4>
+        <h4>The Lockheed Martin SR-72 "Darkstar" is a conceptual hypersonic aircraft, envisioned as the successor to the SR-71 Blackbird, designed for intelligence, surveillance, reconnaissance, and potentially strike missions at speeds exceeding Mach 6.</h4>
         <div class="special-image">
             <img src="Assets/SR-72 DarkStar.png" alt="SR-72 DarkStar">
             <div class="banner">
@@ -710,4 +765,3 @@
 </body>
 
 </html>
-
