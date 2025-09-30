@@ -21,7 +21,7 @@
             line-height: 1.6;
         }
 
-        /* Navbar (updated to match index.html) */
+        /* Navbar */
         .navbar {
             background-color: #080320;
             display: flex;
@@ -29,6 +29,7 @@
             justify-content: space-between;
             padding: 10px 40px;
             height: 80px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .logo-container {
@@ -40,6 +41,11 @@
             height: 60px;
             width: auto;
             margin-right: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container .logo:hover {
+            transform: scale(1.05);
         }
 
         .logo-container .brand-name {
@@ -47,6 +53,11 @@
             font-size: 28px;
             font-weight: 700;
             letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .logo-container:hover .brand-name {
+            color: #ccc;
         }
 
         .navbar .nav-links {
@@ -60,11 +71,14 @@
             margin: 0 20px;
             font-size: 16px;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
         }
 
         .navbar .nav-links a:hover {
             color: #ccc;
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
         .dropdown {
@@ -137,11 +151,12 @@
             font-size: 14px;
             font-weight: 500;
             margin-left: 10px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .navbar .nav-buttons .btn:hover {
             background-color: #e0e0e0;
+            transform: scale(1.05);
         }
 
         .navbar .nav-buttons .btn.secondary {
@@ -151,6 +166,7 @@
 
         .navbar .nav-buttons .btn.secondary:hover {
             background-color: #f0f0f0;
+            transform: scale(1.05);
         }
 
         .navbar .nav-buttons .btn a {
@@ -202,23 +218,104 @@
             padding: 10px;
             font-size: 18px;
             font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .item-card .favorite {
+        .item-card .item-name a {
+            color: #000;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .item-card .item-name a:hover {
+            color: #2f75b5;
+        }
+
+        .item-card .item-price {
+            color: #2f75b5;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .item-card .cart-icon {
             position: absolute;
             top: 10px;
             right: 10px;
             font-size: 24px;
-            color: #ccc;
+            color: #ffb6c1; /* Light pink */
             cursor: pointer;
             transition: color 0.3s ease;
         }
 
-        .item-card .favorite:hover {
-            color: #ff0000;
+        .item-card .cart-icon:hover {
+            color: #ff8c9d; /* Slightly darker pink for hover */
         }
 
-        /* Footer (copied from index.html) */
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: #080320;
+            color: #fff;
+            padding: 20px;
+            transition: left 0.3s ease;
+            z-index: 1000;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .cart-sidebar h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .cart-sidebar .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .cart-sidebar .cart-total {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: 700;
+            text-align: right;
+        }
+
+        .cart-sidebar .close-cart {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #fff;
+            transition: color 0.3s ease;
+        }
+
+        .cart-sidebar .close-cart:hover {
+            color: #2f75b5;
+        }
+
+        /* Checkbox hack for cart toggle */
+        .cart-toggle {
+            display: none;
+        }
+
+        .cart-toggle:checked ~ .cart-sidebar {
+            left: 0;
+        }
+
+        .cart-toggle:checked + .cart-icon {
+            color: #6f0515; /* Slightly darker pink when active */
+        }
+
+        /* Footer */
         .footer {
             background-color: #080320;
             color: #fff;
@@ -300,12 +397,39 @@
             .item-grid {
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
+
+            .cart-sidebar {
+                width: 250px;
+                left: -250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .item-card .item-name {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .item-card .item-price {
+                margin-top: 5px;
+            }
+        }
+
+        /* CSS to show cart items when toggled */
+        #cart-item-f16, #cart-item-f22, #cart-item-f35, #cart-item-f18 {
+            display: none;
+        }
+        #cart-f16:checked ~ .cart-sidebar #cart-item-f16,
+        #cart-f22:checked ~ .cart-sidebar #cart-item-f22,
+        #cart-f35:checked ~ .cart-sidebar #cart-item-f35,
+        #cart-f18:checked ~ .cart-sidebar #cart-item-f18 {
+            display: flex;
         }
     </style>
 </head>
 
 <body>
-    <!-- Navbar (updated to match index.html) -->
+    <!-- Navbar -->
     <div class="navbar">
         <div class="logo-container">
             <img class="logo" src="Assets/Logo Dark Theme.png" alt="Iron Wings Logo">
@@ -328,15 +452,15 @@
                 <div class="dropdown-content">
                     <a href="Maintenance.html">Maintenance</a>
                     <a href="Contact.html">Book a Consult</a>
-                    <a href="Shop.html">Shop with Us</a>
+                    <a href="military.html">Shop with Us</a>
                 </div>
             </div>
             <a href="Contact.html">Contact</a>
         </div>
         <div class="nav-buttons">
-            <button class="btn">Your Cart</button>
-            <button class="btn"><a href="Login.html">Sign Up</button>
-            <button class="btn secondary"><a href="Login.html">Login</a></button>
+            <button class="btn"><a href="Cart.html">Your Cart</a></button>
+            <button class="btn"><a href="Login.html#signup">Sign Up</a></button>
+            <button class="btn secondary"><a href="Login.html#login">Login</a></button>
         </div>
     </div>
 
@@ -350,8 +474,10 @@
                 </a>
                 <div class="item-name">
                     <a href="Aircrafts/F-16.html">F-16</a>
+                    <span class="item-price">$78M</span>
                 </div>
-                <i class="fas fa-heart favorite"></i>
+                <input type="checkbox" class="cart-toggle" id="cart-f16">
+                <label for="cart-f16" class="cart-icon fas fa-shopping-cart"></label>
             </div>
             <div class="item-card">
                 <a href="Aircrafts/F-22.html">
@@ -359,35 +485,45 @@
                 </a>
                 <div class="item-name">
                     <a href="Aircrafts/F-22.html">F-22 Raptor</a>
+                    <span class="item-price">$350M</span>
                 </div>
-                <i class="fas fa-heart favorite"></i>
+                <input type="checkbox" class="cart-toggle" id="cart-f22">
+                <label for="cart-f22" class="cart-icon fas fa-shopping-cart"></label>
             </div>
             <div class="item-card">
                 <a href="Aircrafts/F-35.html">
                     <img src="Assets/F-35 Lightning ii.png" alt="F-35 Lightning II">
                 </a>
                 <div class="item-name">
-                    <a href="Aircrafts/F-35.html">F-35 Lightning ii</a>
+                    <a href="Aircrafts/F-35.html">F-35 Lightning II</a>
+                    <span class="item-price">$110M</span>
                 </div>
-                <i class="fas fa-heart favorite"></i>
+                <input type="checkbox" class="cart-toggle" id="cart-f35">
+                <label for="cart-f35" class="cart-icon fas fa-shopping-cart"></label>
             </div>
             <div class="item-card">
                 <a href="Aircrafts/F-18.html">
-                    <img src="Assets/F-18.png" alt="F-18">
+                    <img src="Assets/F-18.png" alt="F-18 Super Hornet">
                 </a>
                 <div class="item-name">
                     <a href="Aircrafts/F-18.html">F-18 Super Hornet</a>
+                    <span class="item-price">$70M</span>
                 </div>
-                <i class="fas fa-heart favorite"></i>
+                <input type="checkbox" class="cart-toggle" id="cart-f18">
+                <label for="cart-f18" class="cart-icon fas fa-shopping-cart"></label>
             </div>
+        </div>
+        <div class="item-grid">
             <div class="item-card">
                 <a href="Aircrafts/F-16.html">
                     <img src="Assets/F-16 in air.png" alt="F-16">
                 </a>
                 <div class="item-name">
                     <a href="Aircrafts/F-16.html">F-16</a>
+                    <span class="item-price">$78M</span>
                 </div>
-                <i class="fas fa-heart favorite"></i>
+                <input type="checkbox" class="cart-toggle" id="cart-f16">
+                <label for="cart-f16" class="cart-icon fas fa-shopping-cart"></label>
             </div>
             <div class="item-card">
                 <a href="Aircrafts/F-22.html">
@@ -395,35 +531,45 @@
                 </a>
                 <div class="item-name">
                     <a href="Aircrafts/F-22.html">F-22 Raptor</a>
+                    <span class="item-price">$350M</span>
                 </div>
-                <i class="fas fa-heart favorite"></i>
+                <input type="checkbox" class="cart-toggle" id="cart-f22">
+                <label for="cart-f22" class="cart-icon fas fa-shopping-cart"></label>
             </div>
             <div class="item-card">
                 <a href="Aircrafts/F-35.html">
                     <img src="Assets/F-35 Lightning ii.png" alt="F-35 Lightning II">
                 </a>
                 <div class="item-name">
-                    <a href="Aircrafts/F-35.html">F-35 Lightning ii</a>
+                    <a href="Aircrafts/F-35.html">F-35 Lightning II</a>
+                    <span class="item-price">$110M</span>
                 </div>
-                <i class="fas fa-heart favorite"></i>
+                <input type="checkbox" class="cart-toggle" id="cart-f35">
+                <label for="cart-f35" class="cart-icon fas fa-shopping-cart"></label>
             </div>
             <div class="item-card">
                 <a href="Aircrafts/F-18.html">
-                    <img src="Assets/F-18.png" alt="F-18">
+                    <img src="Assets/F-18.png" alt="F-18 Super Hornet">
                 </a>
                 <div class="item-name">
                     <a href="Aircrafts/F-18.html">F-18 Super Hornet</a>
+                    <span class="item-price">$70M</span>
                 </div>
-                <i class="fas fa-heart favorite"></i>
+                <input type="checkbox" class="cart-toggle" id="cart-f18">
+                <label for="cart-f18" class="cart-icon fas fa-shopping-cart"></label>
             </div>
+        </div>
+        <div class="item-grid">
             <div class="item-card">
                 <a href="Aircrafts/F-16.html">
                     <img src="Assets/F-16 in air.png" alt="F-16">
                 </a>
                 <div class="item-name">
                     <a href="Aircrafts/F-16.html">F-16</a>
+                    <span class="item-price">$78M</span>
                 </div>
-                <i class="fas fa-heart favorite"></i>
+                <input type="checkbox" class="cart-toggle" id="cart-f16">
+                <label for="cart-f16" class="cart-icon fas fa-shopping-cart"></label>
             </div>
             <div class="item-card">
                 <a href="Aircrafts/F-22.html">
@@ -431,28 +577,60 @@
                 </a>
                 <div class="item-name">
                     <a href="Aircrafts/F-22.html">F-22 Raptor</a>
+                    <span class="item-price">$350M</span>
                 </div>
-                <i class="fas fa-heart favorite"></i>
+                <input type="checkbox" class="cart-toggle" id="cart-f22">
+                <label for="cart-f22" class="cart-icon fas fa-shopping-cart"></label>
             </div>
             <div class="item-card">
                 <a href="Aircrafts/F-35.html">
                     <img src="Assets/F-35 Lightning ii.png" alt="F-35 Lightning II">
                 </a>
                 <div class="item-name">
-                    <a href="Aircrafts/F-35.html">F-35 Lightning ii</a>
+                    <a href="Aircrafts/F-35.html">F-35 Lightning II</a>
+                    <span class="item-price">$110M</span>
                 </div>
-                <i class="fas fa-heart favorite"></i>
+                <input type="checkbox" class="cart-toggle" id="cart-f35">
+                <label for="cart-f35" class="cart-icon fas fa-shopping-cart"></label>
             </div>
             <div class="item-card">
                 <a href="Aircrafts/F-18.html">
-                    <img src="Assets/F-18.png" alt="F-18">
+                    <img src="Assets/F-18.png" alt="F-18 Super Hornet">
                 </a>
                 <div class="item-name">
                     <a href="Aircrafts/F-18.html">F-18 Super Hornet</a>
+                    <span class="item-price">$70M</span>
                 </div>
-                <i class="fas fa-heart favorite"></i>
+                <input type="checkbox" class="cart-toggle" id="cart-f18">
+                <label for="cart-f18" class="cart-icon fas fa-shopping-cart"></label>
             </div>
-            <!-- Add more military items as needed -->
+        </div>
+        <!-- Cart Sidebar, this requires JavaScript hence we will do it later-->
+        <div class="cart-sidebar">
+            <h2>Your Cart</h2>
+            <label for="cart-f16" class="close-cart fas fa-times"></label>
+            <label for="cart-f22" class="close-cart fas fa-times"></label>
+            <label for="cart-f35" class="close-cart fas fa-times"></label>
+            <label for="cart-f18" class="close-cart fas fa-times"></label>
+            <div class="cart-item" id="cart-item-f16">
+                <span>F-16</span>
+                <span>$78M</span>
+            </div>
+            <div class="cart-item" id="cart-item-f22">
+                <span>F-22 Raptor</span>
+                <span>$350M</span>
+            </div>
+            <div class="cart-item" id="cart-item-f35">
+                <span>F-35 Lightning II</span>
+                <span>$110M</span>
+            </div>
+            <div class="cart-item" id="cart-item-f18">
+                <span>F-18 Super Hornet</span>
+                <span>$70M</span>
+            </div>
+            <div class="cart-total">
+                Total: <span>$608M</span>
+            </div>
         </div>
     </div>
 
@@ -480,9 +658,9 @@
             <p>516, Bhagat Singh Hostel, BML Munjal University</p>
             <p>67th Milestone, Gurgaon, INDIA</p>
             <div class="social">
-                <a href="#"><img src="https://via.placeholder.com/20?text=F" alt="Facebook"></a>
-                <a href="#"><img src="https://via.placeholder.com/20?text=T" alt="Twitter"></a>
-                <a href="#"><img src="https://via.placeholder.com/20?text=I" alt="Instagram"></a>
+                <a href="#"><img src="Assets/Facebook.webp" alt="Facebook"></a>
+                <a href="#"><img src="Assets/Twitter.webp" alt="Twitter"></a>
+                <a href="#"><img src="Assets/Instagram.webp" alt="Instagram"></a>
             </div>
         </div>
     </div>
