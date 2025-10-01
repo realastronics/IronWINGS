@@ -10,18 +10,6 @@
     <style>
         * {
             margin: 0;
-            padding: 0;<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IronWINGS - Commercial Collections</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
@@ -33,7 +21,7 @@
             line-height: 1.6;
         }
 
-        /* Navbar (updated to match index.html) */
+        /* Navbar */
         .navbar {
             background-color: #080320;
             display: flex;
@@ -41,6 +29,7 @@
             justify-content: space-between;
             padding: 10px 40px;
             height: 80px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .logo-container {
@@ -52,6 +41,11 @@
             height: 60px;
             width: auto;
             margin-right: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container .logo:hover {
+            transform: scale(1.05);
         }
 
         .logo-container .brand-name {
@@ -59,6 +53,11 @@
             font-size: 28px;
             font-weight: 700;
             letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .logo-container:hover .brand-name {
+            color: #ccc;
         }
 
         .navbar .nav-links {
@@ -72,11 +71,14 @@
             margin: 0 20px;
             font-size: 16px;
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
         }
 
         .navbar .nav-links a:hover {
             color: #ccc;
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
         .dropdown {
@@ -149,11 +151,12 @@
             font-size: 14px;
             font-weight: 500;
             margin-left: 10px;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .navbar .nav-buttons .btn:hover {
             background-color: #e0e0e0;
+            transform: scale(1.05);
         }
 
         .navbar .nav-buttons .btn.secondary {
@@ -163,6 +166,7 @@
 
         .navbar .nav-buttons .btn.secondary:hover {
             background-color: #f0f0f0;
+            transform: scale(1.05);
         }
 
         .navbar .nav-buttons .btn a {
@@ -214,20 +218,101 @@
             padding: 10px;
             font-size: 18px;
             font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .item-card .favorite {
+        .item-card .item-name a {
+            color: #000;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .item-card .item-name a:hover {
+            color: #2f75b5;
+        }
+
+        .item-card .item-price {
+            color: #2f75b5;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .item-card .cart-icon {
             position: absolute;
             top: 10px;
             right: 10px;
             font-size: 24px;
-            color: #ccc;
+            color: #ffb6c1; /* Light pink */
             cursor: pointer;
             transition: color 0.3s ease;
         }
 
-        .item-card .favorite:hover {
-            color: #ff0000;
+        .item-card .cart-icon:hover {
+            color: #ff8c9d; /* Slightly darker pink for hover */
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100%;
+            background-color: #080320;
+            color: #fff;
+            padding: 20px;
+            transition: left 0.3s ease;
+            z-index: 1000;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .cart-sidebar h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .cart-sidebar .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .cart-sidebar .cart-total {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: 700;
+            text-align: right;
+        }
+
+        .cart-sidebar .close-cart {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #fff;
+            transition: color 0.3s ease;
+        }
+
+        .cart-sidebar .close-cart:hover {
+            color: #2f75b5;
+        }
+
+        /* Checkbox hack for cart toggle */
+        .cart-toggle {
+            display: none;
+        }
+
+        .cart-toggle:checked ~ .cart-sidebar {
+            left: 0;
+        }
+
+        .cart-toggle:checked + .cart-icon {
+            color: #6f0515; /* Slightly darker pink when active */
         }
 
         /* Footer */
@@ -312,12 +397,39 @@
             .item-grid {
                 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
+
+            .cart-sidebar {
+                width: 250px;
+                left: -250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .item-card .item-name {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .item-card .item-price {
+                margin-top: 5px;
+            }
+        }
+
+        /* CSS to show cart items when toggled */
+        #cart-item-boeing747, #cart-item-airbusa380, #cart-item-airbusa320, #cart-item-boeing787 {
+            display: none;
+        }
+        #cart-boeing747:checked ~ .cart-sidebar #cart-item-boeing747,
+        #cart-airbusa380:checked ~ .cart-sidebar #cart-item-airbusa380,
+        #cart-airbusa320:checked ~ .cart-sidebar #cart-item-airbusa320,
+        #cart-boeing787:checked ~ .cart-sidebar #cart-item-boeing787 {
+            display: flex;
         }
     </style>
 </head>
 
 <body>
-    <!-- Navbar (updated to match index.html) -->
+    <!-- Navbar -->
     <div class="navbar">
         <div class="logo-container">
             <img class="logo" src="Assets/Logo Dark Theme.png" alt="Iron Wings Logo">
@@ -340,15 +452,15 @@
                 <div class="dropdown-content">
                     <a href="Maintenance.html">Maintenance</a>
                     <a href="Contact.html">Book a Consult</a>
-                    <a href="Shop.html">Shop with Us</a>
+                    <a href="military.html">Shop with Us</a>
                 </div>
             </div>
             <a href="Contact.html">Contact</a>
         </div>
         <div class="nav-buttons">
             <button class="btn"><a href="Cart.html">Your Cart</a></button>
-            <button class="btn"><a href="Login.html#Signup">Sign Up</a></button>
-            <button class="btn secondary"><a href="Login.html">Login</a></button>
+            <button class="btn"><a href="Login.html#signup">Sign Up</a></button>
+            <button class="btn secondary"><a href="Login.html#login">Login</a></button>
         </div>
     </div>
 
@@ -357,32 +469,170 @@
         <h1>Commercial Collections</h1>
         <div class="item-grid">
             <div class="item-card">
-                <a href="boeing-747.html">
+                <a href="Boeing747.html">
                     <img src="Assets/Boeing 747.jpg" alt="Boeing 747">
                 </a>
-                <div class="item-name">Boeing 747</div>
-                <i class="fas fa-heart favorite"></i>
+                <div class="item-name">
+                    <a href="Boeing747.html">Boeing 747</a>
+                    <span class="item-price">$418M</span>
+                </div>
+                <input type="checkbox" class="cart-toggle" id="cart-boeing747">
+                <label for="cart-boeing747" class="cart-icon fas fa-shopping-cart"></label>
             </div>
             <div class="item-card">
-                <a href="airbus-a380.html">
+                <a href="AirbusA380.html">
                     <img src="Assets/airbus_a380_on_the_ground.jpg" alt="Airbus A380">
                 </a>
-                <div class="item-name">Airbus A380</div>
-                <i class="fas fa-heart favorite"></i>
+                <div class="item-name">
+                    <a href="AirbusA380.html">Airbus A380</a>
+                    <span class="item-price">$445M</span>
+                </div>
+                <input type="checkbox" class="cart-toggle" id="cart-airbusa380">
+                <label for="cart-airbusa380" class="cart-icon fas fa-shopping-cart"></label>
             </div>
             <div class="item-card">
-                <a href="airbus-a320.html">
+                <a href="AirbusA320.html">
                     <img src="Assets/Airbus A320.jpg" alt="Airbus A320">
                 </a>
-                <div class="item-name">Airbus A320</div>
-                <i class="fas fa-heart favorite"></i>
+                <div class="item-name">
+                    <a href="AirbusA320.html">Airbus A320</a>
+                    <span class="item-price">$101M</span>
+                </div>
+                <input type="checkbox" class="cart-toggle" id="cart-airbusa320">
+                <label for="cart-airbusa320" class="cart-icon fas fa-shopping-cart"></label>
             </div>
-            <!-- Add more commercial items as needed -->
+            <div class="item-card">
+                <a href="Boeing787.html">
+                    <img src="Assets/Boeing787.png" alt="Boeing 787">
+                </a>
+                <div class="item-name">
+                    <a href="Boeing787.html">Boeing 787</a>
+                    <span class="item-price">$248M</span>
+                </div>
+                <input type="checkbox" class="cart-toggle" id="cart-boeing787">
+                <label for="cart-boeing787" class="cart-icon fas fa-shopping-cart"></label>
+            </div>
+        </div>
+        <div class="item-grid">
+            <div class="item-card">
+                <a href="Boeing747.html">
+                    <img src="Assets/Boeing 747.jpg" alt="Boeing 747">
+                </a>
+                <div class="item-name">
+                    <a href="Boeing747.html">Boeing 747</a>
+                    <span class="item-price">$418M</span>
+                </div>
+                <input type="checkbox" class="cart-toggle" id="cart-boeing747">
+                <label for="cart-boeing747" class="cart-icon fas fa-shopping-cart"></label>
+            </div>
+            <div class="item-card">
+                <a href="AirbusA380.html">
+                    <img src="Assets/airbus_a380_on_the_ground.jpg" alt="Airbus A380">
+                </a>
+                <div class="item-name">
+                    <a href="AirbusA380.html">Airbus A380</a>
+                    <span class="item-price">$445M</span>
+                </div>
+                <input type="checkbox" class="cart-toggle" id="cart-airbusa380">
+                <label for="cart-airbusa380" class="cart-icon fas fa-shopping-cart"></label>
+            </div>
+            <div class="item-card">
+                <a href="AirbusA320.html">
+                    <img src="Assets/Airbus A320.jpg" alt="Airbus A320">
+                </a>
+                <div class="item-name">
+                    <a href="AirbusA320.html">Airbus A320</a>
+                    <span class="item-price">$101M</span>
+                </div>
+                <input type="checkbox" class="cart-toggle" id="cart-airbusa320">
+                <label for="cart-airbusa320" class="cart-icon fas fa-shopping-cart"></label>
+            </div>
+            <div class="item-card">
+                <a href="Boeing787.html">
+                    <img src="Assets/Boeing787.png" alt="Boeing 787">
+                </a>
+                <div class="item-name">
+                    <a href="Boeing787.html">Boeing 787</a>
+                    <span class="item-price">$248M</span>
+                </div>
+                <input type="checkbox" class="cart-toggle" id="cart-boeing787">
+                <label for="cart-boeing787" class="cart-icon fas fa-shopping-cart"></label>
+            </div>
+        </div><div class="item-grid">
+            <div class="item-card">
+                <a href="Boeing747.html">
+                    <img src="Assets/Boeing 747.jpg" alt="Boeing 747">
+                </a>
+                <div class="item-name">
+                    <a href="Boeing747.html">Boeing 747</a>
+                    <span class="item-price">$418M</span>
+                </div>
+                <input type="checkbox" class="cart-toggle" id="cart-boeing747">
+                <label for="cart-boeing747" class="cart-icon fas fa-shopping-cart"></label>
+            </div>
+            <div class="item-card">
+                <a href="AirbusA380.html">
+                    <img src="Assets/airbus_a380_on_the_ground.jpg" alt="Airbus A380">
+                </a>
+                <div class="item-name">
+                    <a href="AirbusA380.html">Airbus A380</a>
+                    <span class="item-price">$445M</span>
+                </div>
+                <input type="checkbox" class="cart-toggle" id="cart-airbusa380">
+                <label for="cart-airbusa380" class="cart-icon fas fa-shopping-cart"></label>
+            </div>
+            <div class="item-card">
+                <a href="AirbusA320.html">
+                    <img src="Assets/Airbus A320.jpg" alt="Airbus A320">
+                </a>
+                <div class="item-name">
+                    <a href="AirbusA320.html">Airbus A320</a>
+                    <span class="item-price">$101M</span>
+                </div>
+                <input type="checkbox" class="cart-toggle" id="cart-airbusa320">
+                <label for="cart-airbusa320" class="cart-icon fas fa-shopping-cart"></label>
+            </div>
+            <div class="item-card">
+                <a href="Boeing787.html">
+                    <img src="Assets/Boeing787.png" alt="Boeing 787">
+                </a>
+                <div class="item-name">
+                    <a href="Boeing787.html">Boeing 787</a>
+                    <span class="item-price">$248M</span>
+                </div>
+                <input type="checkbox" class="cart-toggle" id="cart-boeing787">
+                <label for="cart-boeing787" class="cart-icon fas fa-shopping-cart"></label>
+            </div>
+        </div>
+        <!-- Cart Sidebar, this requires JavaScript hence we will do it later-->
+        <div class="cart-sidebar">
+            <h2>Your Cart</h2>
+            <label for="cart-boeing747" class="close-cart fas fa-times"></label>
+            <label for="cart-airbusa380" class="close-cart fas fa-times"></label>
+            <label for="cart-airbusa320" class="close-cart fas fa-times"></label>
+            <label for="cart-boeing787" class="close-cart fas fa-times"></label>
+            <div class="cart-item" id="cart-item-boeing747">
+                <span>Boeing 747</span>
+                <span>$418M</span>
+            </div>
+            <div class="cart-item" id="cart-item-airbusa380">
+                <span>Airbus A380</span>
+                <span>$445M</span>
+            </div>
+            <div class="cart-item" id="cart-item-airbusa320">
+                <span>Airbus A320</span>
+                <span>$101M</span>
+            </div>
+            <div class="cart-item" id="cart-item-boeing787">
+                <span>Boeing 787</span>
+                <span>$248M</span>
+            </div>
+            <div class="cart-total">
+                Total: <span>$1.212B</span>
+            </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    
     <!-- Footer -->
     <div class="footer">
         <div class="links">
@@ -406,397 +656,6 @@
                 <a href="https://www.facebook.com/profile.php?id=61571381126264"><img src="Assets/facebook.jpg" alt="Facebook"></a>
                 <a href="https://x.com/MohakJain08"><img src="Assets/twitter.png" alt="Twitter"></a>
                 <a href="https://www.instagram.com/farhanakhter_8858a/"><img src="Assets/instagram.png" alt="Instagram"></a>
-            </div>
-        </div>
-    </div>
-</body>
-
-</html>
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #fff;
-            color: #000;
-            line-height: 1.6;
-        }
-
-        /* Navbar (updated to match index.html) */
-        .navbar {
-            background-color: #080320;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 40px;
-            height: 80px;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo-container .logo {
-            height: 60px;
-            width: auto;
-            margin-right: 15px;
-        }
-
-        .logo-container .brand-name {
-            color: #fff;
-            font-size: 28px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .navbar .nav-links {
-            display: flex;
-            align-items: center;
-        }
-
-        .navbar .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 20px;
-            font-size: 16px;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .navbar .nav-links a:hover {
-            color: #ccc;
-        }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown .dropbtn {
-            color: #fff;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 500;
-            margin: 0 20px;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .dropdown .dropbtn:hover {
-            color: #ccc;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #080320;
-            min-width: 200px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-            border-radius: 8px;
-            overflow: hidden;
-            top: 100%;
-            left: 0;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-
-        .dropdown-content a {
-            color: #fff;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            font-size: 14px;
-            font-weight: 400;
-            transition: background-color 0.3s ease;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #2f75b5;
-        }
-
-        .dropdown:hover .dropdown-content {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .navbar .nav-buttons {
-            display: flex;
-            align-items: center;
-        }
-
-        .navbar .nav-buttons .btn {
-            background-color: #f5f8f5;
-            color: #1a1919;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 500;
-            margin-left: 10px;
-            transition: background-color 0.3s ease;
-        }
-
-        .navbar .nav-buttons .btn:hover {
-            background-color: #e0e0e0;
-        }
-
-        .navbar .nav-buttons .btn.secondary {
-            background-color: #fff;
-            color: #000;
-        }
-
-        .navbar .nav-buttons .btn.secondary:hover {
-            background-color: #f0f0f0;
-        }
-
-        .navbar .nav-buttons .btn a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        /* Category Section */
-        .category-section {
-            max-width: 1200px;
-            margin: 60px auto;
-            padding: 0 40px;
-        }
-
-        .category-section h1 {
-            font-size: 36px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .item-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .item-card {
-            position: relative;
-            text-align: center;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        .item-card:hover {
-            transform: scale(1.05);
-        }
-
-        .item-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .item-card .item-name {
-            padding: 10px;
-            font-size: 18px;
-            font-weight: 500;
-        }
-
-        .item-card .favorite {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 24px;
-            color: #ccc;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .item-card .favorite:hover {
-            color: #ff0000;
-        }
-
-        /* Footer */
-        .footer {
-            background-color: #080320;
-            color: #fff;
-            padding: 60px 40px;
-            font-size: 14px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 40px;
-        }
-
-        .footer .links {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .footer .links a {
-            color: #fff;
-            text-decoration: none;
-            margin-bottom: 10px;
-            font-weight: 400;
-            transition: color 0.3s ease;
-        }
-
-        .footer .links a:hover {
-            color: #ccc;
-        }
-
-        .footer .copyright {
-            text-align: right;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-
-        .footer .copyright p {
-            margin-bottom: 10px;
-        }
-
-        .footer .social {
-            display: flex;
-            gap: 15px;
-        }
-
-        .footer .social img {
-            height: 24px;
-            width: 24px;
-            transition: transform 0.3s ease;
-        }
-
-        .footer .social img:hover {
-            transform: scale(1.1);
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                height: auto;
-                padding: 20px;
-            }
-
-            .navbar .nav-links {
-                margin: 10px 0;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .navbar .nav-buttons {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .category-section {
-                padding: 0 20px;
-            }
-
-            .item-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            }
-        }
-    </style>
-</head>
-
-<body>
-    <!-- Navbar (updated to match index.html) -->
-    <div class="navbar">
-        <div class="logo-container">
-            <img class="logo" src="Assets/Logo Dark Theme.png" alt="Iron Wings Logo">
-            <span class="brand-name">IronWINGS</span>
-        </div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="About.html">About Us</a>
-            <a href="TestFlight.html">Test Flight</a>
-            <div class="dropdown">
-                <span class="dropbtn">Categories</span>
-                <div class="dropdown-content">
-                    <a href="military.html">Military</a>
-                    <a href="commercial.html">Commercial</a>
-                    <a href="accessories.html">Accessories</a>
-                </div>
-            </div>
-            <div class="dropdown">
-                <span class="dropbtn">Our Services</span>
-                <div class="dropdown-content">
-                    <a href="Maintenance.html">Maintenance</a>
-                    <a href="Contact.html">Book a Consult</a>
-                    <a href="Shop.html">Shop with Us</a>
-                </div>
-            </div>
-            <a href="Contact.html">Contact</a>
-        </div>
-        <div class="nav-buttons">
-            <button class="btn">Your Cart</button>
-            <button class="btn">Sign Up</button>
-            <button class="btn secondary"><a href="Login.html">Login</a></button>
-        </div>
-    </div>
-
-    <!-- Commercial Category Section -->
-    <div class="category-section">
-        <h1>Commercial Collections</h1>
-        <div class="item-grid">
-            <div class="item-card">
-                <a href="boeing-747.html">
-                    <img src="Assets/Boeing 747.jpg" alt="Boeing 747">
-                </a>
-                <div class="item-name">Boeing 747</div>
-                <i class="fas fa-heart favorite"></i>
-            </div>
-            <div class="item-card">
-                <a href="airbus-a380.html">
-                    <img src="Assets/airbus_a380_on_the_ground.jpg" alt="Airbus A380">
-                </a>
-                <div class="item-name">Airbus A380</div>
-                <i class="fas fa-heart favorite"></i>
-            </div>
-            <div class="item-card">
-                <a href="airbus-a320.html">
-                    <img src="Assets/Airbus A320.jpg" alt="Airbus A320">
-                </a>
-                <div class="item-name">Airbus A320</div>
-                <i class="fas fa-heart favorite"></i>
-            </div>
-            <!-- Add more commercial items as needed -->
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer">
-        <div class="links">
-            <a href="#">Menu</a>
-            <a href="#">Find a Store</a>
-            <a href="#">Sign up for Email</a>
-            <a href="#">Send us Feedback</a>
-        </div>
-        <div class="links">
-            <a href="#">Helpdesk</a>
-            <a href="#">Order Status</a>
-            <a href="#">Delivery</a>
-            <a href="#">Payment Options</a>
-        </div>
-        <div class="links">
-            <a href="#">About IronWINGS</a>
-            <a href="#">Careers</a>
-            <a href="#">Investors</a>
-        </div>
-        <div class="copyright">
-            <p>© 2025 IronWINGS, Inc. All Rights Reserved</p>
-            <p>516, Bhagat Singh Hostel, BML Munjal University</p>
-            <p>67th Milestone, Gurgaon, INDIA</p>
-            <div class="social">
-                <a href="#"><img src="https://via.placeholder.com/20?text=F" alt="Facebook"></a>
-                <a href="#"><img src="https://via.placeholder.com/20?text=T" alt="Twitter"></a>
-                <a href="#"><img src="https://via.placeholder.com/20?text=I" alt="Instagram"></a>
             </div>
         </div>
     </div>
