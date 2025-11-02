@@ -7,6 +7,7 @@
     <title>IronWINGS - Military Collections</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="Assets/common.css">
     <style>
         * {
             margin: 0;
@@ -19,6 +20,7 @@
             background-color: #fff;
             color: #000;
             line-height: 1.6;
+            padding-top: 100px; /* space for fixed navbar */
         }
 
         /* Navbar */
@@ -27,9 +29,14 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 10px 40px;
+            padding: 15px 40px;
             height: 80px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
         }
 
         .logo-container {
@@ -68,7 +75,7 @@
         .navbar .nav-links a {
             color: #fff;
             text-decoration: none;
-            margin: 0 20px;
+            margin: 0 12px; /* reduced spacing */
             font-size: 16px;
             font-weight: 500;
             transition: color 0.3s ease, background-color 0.3s ease;
@@ -91,7 +98,7 @@
             text-decoration: none;
             font-size: 16px;
             font-weight: 500;
-            margin: 0 20px;
+            margin: 0 12px; /* reduced spacing */
             cursor: pointer;
             transition: color 0.3s ease;
         }
@@ -201,11 +208,12 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             overflow: hidden;
-            transition: transform 0.3s ease;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
 
         .item-card:hover {
-            transform: scale(1.05);
+            transform: translateY(-6px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
         }
 
         .item-card img {
@@ -429,8 +437,7 @@
 </head>
 
 <body>
-    <!-- Navbar -->
-    <div class="navbar">
+    <nav class="navbar">
         <div class="logo-container">
             <img class="logo" src="Assets/Logo Dark Theme.png" alt="Iron Wings Logo">
             <span class="brand-name">IronWINGS</span>
@@ -452,17 +459,19 @@
                 <div class="dropdown-content">
                     <a href="Maintenance.html">Maintenance</a>
                     <a href="Contact.html">Book a Consult</a>
-                    <a href="military.html">Shop with Us</a>
+                    <a href="Shop.html">Shop with Us</a>
                 </div>
             </div>
             <a href="Contact.html">Contact</a>
         </div>
         <div class="nav-buttons">
-            <button class="btn"><a href="Cart.html">Your Cart</a></button>
-            <button class="btn"><a href="Login.html#signup">Sign Up</a></button>
-            <button class="btn secondary"><a href="Login.html#login">Login</a></button>
+            <a href="Login.html" class="btn">Sign In</a>
+            <a href="Cart.html" class="btn">Cart (0)</a>
         </div>
-    </div>
+    </nav>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
 
     <!-- Military Category Section -->
     <div class="category-section">
@@ -474,10 +483,9 @@
                 </a>
                 <div class="item-name">
                     <a href="F-16.html">F-16</a>
-                    <span class="item-price">$78M</span>
+                    <span class="item-price">$249.99</span>
                 </div>
-                <input type="checkbox" class="cart-toggle" id="cart-f16">
-                <label for="cart-f16" class="cart-icon fas fa-shopping-cart"></label>
+                <button class="cart-icon" onclick="addToCart({id: 'f16', name: 'F-16', price: 249.99})"><i class="fas fa-shopping-cart"></i></button>
             </div>
             <div class="item-card">
                 <a href="F-22.html">
@@ -485,10 +493,9 @@
                 </a>
                 <div class="item-name">
                     <a href="F-22.html">F-22 Raptor</a>
-                    <span class="item-price">$350M</span>
+                    <span class="item-price">$299.99</span>
                 </div>
-                <input type="checkbox" class="cart-toggle" id="cart-f22">
-                <label for="cart-f22" class="cart-icon fas fa-shopping-cart"></label>
+                <button class="cart-icon" onclick="addToCart({id: 'f22', name: 'F-22 Raptor', price: 299.99})"><i class="fas fa-shopping-cart"></i></button>
             </div>
             <div class="item-card">
                 <a href="F-35.html">
@@ -496,10 +503,9 @@
                 </a>
                 <div class="item-name">
                     <a href="F-35.html">F-35 Lightning II</a>
-                    <span class="item-price">$110M</span>
+                    <span class="item-price">$329.99</span>
                 </div>
-                <input type="checkbox" class="cart-toggle" id="cart-f35">
-                <label for="cart-f35" class="cart-icon fas fa-shopping-cart"></label>
+                <button class="cart-icon" onclick="addToCart({id: 'f35', name: 'F-35 Lightning II', price: 329.99})"><i class="fas fa-shopping-cart"></i></button>
             </div>
             <div class="item-card">
                 <a href="F-18.html">
@@ -507,56 +513,9 @@
                 </a>
                 <div class="item-name">
                     <a href="F-18.html">F-18 Super Hornet</a>
-                    <span class="item-price">$70M</span>
+                    <span class="item-price">$279.99</span>
                 </div>
-                <input type="checkbox" class="cart-toggle" id="cart-f18">
-                <label for="cart-f18" class="cart-icon fas fa-shopping-cart"></label>
-            </div>
-        </div>
-<div class="item-grid">
-            <div class="item-card">
-                <a href="F-16.html">
-                    <img src="Assets/F-16 in air.png" alt="F-16">
-                </a>
-                <div class="item-name">
-                    <a href="F-16.html">F-16</a>
-                    <span class="item-price">$78M</span>
-                </div>
-                <input type="checkbox" class="cart-toggle" id="cart-f16">
-                <label for="cart-f16" class="cart-icon fas fa-shopping-cart"></label>
-            </div>
-            <div class="item-card">
-                <a href="F-22.html">
-                    <img src="Assets/F-22 Raptor.png" alt="F-22 Raptor">
-                </a>
-                <div class="item-name">
-                    <a href="F-22.html">F-22 Raptor</a>
-                    <span class="item-price">$350M</span>
-                </div>
-                <input type="checkbox" class="cart-toggle" id="cart-f22">
-                <label for="cart-f22" class="cart-icon fas fa-shopping-cart"></label>
-            </div>
-            <div class="item-card">
-                <a href="F-35.html">
-                    <img src="Assets/F-35 Lightning ii.png" alt="F-35 Lightning II">
-                </a>
-                <div class="item-name">
-                    <a href="F-35.html">F-35 Lightning II</a>
-                    <span class="item-price">$110M</span>
-                </div>
-                <input type="checkbox" class="cart-toggle" id="cart-f35">
-                <label for="cart-f35" class="cart-icon fas fa-shopping-cart"></label>
-            </div>
-            <div class="item-card">
-                <a href="F-18.html">
-                    <img src="Assets/F-18.png" alt="F-18 Super Hornet">
-                </a>
-                <div class="item-name">
-                    <a href="F-18.html">F-18 Super Hornet</a>
-                    <span class="item-price">$70M</span>
-                </div>
-                <input type="checkbox" class="cart-toggle" id="cart-f18">
-                <label for="cart-f18" class="cart-icon fas fa-shopping-cart"></label>
+                <button class="cart-icon" onclick="addToCart({id: 'f18', name: 'F-18 Super Hornet', price: 279.99})"><i class="fas fa-shopping-cart"></i></button>
             </div>
         </div>
         <div class="item-grid">
@@ -566,10 +525,9 @@
                 </a>
                 <div class="item-name">
                     <a href="F-16.html">F-16</a>
-                    <span class="item-price">$78M</span>
+                    <span class="item-price">$249.99</span>
                 </div>
-                <input type="checkbox" class="cart-toggle" id="cart-f16">
-                <label for="cart-f16" class="cart-icon fas fa-shopping-cart"></label>
+                <button class="cart-icon" onclick="addToCart({id: 'f16', name: 'F-16', price: 249.99})"><i class="fas fa-shopping-cart"></i></button>
             </div>
             <div class="item-card">
                 <a href="F-22.html">
@@ -577,10 +535,9 @@
                 </a>
                 <div class="item-name">
                     <a href="F-22.html">F-22 Raptor</a>
-                    <span class="item-price">$350M</span>
+                    <span class="item-price">$299.99</span>
                 </div>
-                <input type="checkbox" class="cart-toggle" id="cart-f22">
-                <label for="cart-f22" class="cart-icon fas fa-shopping-cart"></label>
+                <button class="cart-icon" onclick="addToCart({id: 'f22', name: 'F-22 Raptor', price: 299.99})"><i class="fas fa-shopping-cart"></i></button>
             </div>
             <div class="item-card">
                 <a href="F-35.html">
@@ -588,10 +545,9 @@
                 </a>
                 <div class="item-name">
                     <a href="F-35.html">F-35 Lightning II</a>
-                    <span class="item-price">$110M</span>
+                    <span class="item-price">$329.99</span>
                 </div>
-                <input type="checkbox" class="cart-toggle" id="cart-f35">
-                <label for="cart-f35" class="cart-icon fas fa-shopping-cart"></label>
+                <button class="cart-icon" onclick="addToCart({id: 'f35', name: 'F-35 Lightning II', price: 329.99})"><i class="fas fa-shopping-cart"></i></button>
             </div>
             <div class="item-card">
                 <a href="F-18.html">
@@ -599,40 +555,12 @@
                 </a>
                 <div class="item-name">
                     <a href="F-18.html">F-18 Super Hornet</a>
-                    <span class="item-price">$70M</span>
+                    <span class="item-price">$279.99</span>
                 </div>
-                <input type="checkbox" class="cart-toggle" id="cart-f18">
-                <label for="cart-f18" class="cart-icon fas fa-shopping-cart"></label>
+                <button class="cart-icon" onclick="addToCart({id: 'f18', name: 'F-18 Super Hornet', price: 279.99})"><i class="fas fa-shopping-cart"></i></button>
             </div>
         </div>
-        <!-- Cart Sidebar, this requires JavaScript hence we will do it later-->
-        <div class="cart-sidebar">
-            <h2>Your Cart</h2>
-            <label for="cart-f16" class="close-cart fas fa-times"></label>
-            <label for="cart-f22" class="close-cart fas fa-times"></label>
-            <label for="cart-f35" class="close-cart fas fa-times"></label>
-            <label for="cart-f18" class="close-cart fas fa-times"></label>
-            <div class="cart-item" id="cart-item-f16">
-                <span>F-16</span>
-                <span>$78M</span>
-            </div>
-            <div class="cart-item" id="cart-item-f22">
-                <span>F-22 Raptor</span>
-                <span>$350M</span>
-            </div>
-            <div class="cart-item" id="cart-item-f35">
-                <span>F-35 Lightning II</span>
-                <span>$110M</span>
-            </div>
-            <div class="cart-item" id="cart-item-f18">
-                <span>F-18 Super Hornet</span>
-                <span>$70M</span>
-            </div>
-            <div class="cart-total">
-                Total: <span>$608M</span>
-            </div>
         </div>
-    </div>
 
     <!-- Footer -->
     <div class="footer">
@@ -660,6 +588,7 @@
             </div>
         </div>
     </div>
+    <script src="Assets/cart.js"></script>
 </body>
 
 </html>
