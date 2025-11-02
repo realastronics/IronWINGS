@@ -7,6 +7,7 @@
     <title>IronWINGS - Commercial Collections</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="Assets/common.css">
     <style>
         * {
             margin: 0;
@@ -19,6 +20,7 @@
             background-color: #fff;
             color: #000;
             line-height: 1.6;
+            padding-top: 100px; /* space for fixed navbar */
         }
 
         /* Navbar */
@@ -27,9 +29,14 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 10px 40px;
+            padding: 15px 40px;
             height: 80px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
         }
 
         .logo-container {
@@ -68,7 +75,7 @@
         .navbar .nav-links a {
             color: #fff;
             text-decoration: none;
-            margin: 0 20px;
+            margin: 0 12px; /* reduced spacing */
             font-size: 16px;
             font-weight: 500;
             transition: color 0.3s ease, background-color 0.3s ease;
@@ -91,7 +98,7 @@
             text-decoration: none;
             font-size: 16px;
             font-weight: 500;
-            margin: 0 20px;
+            margin: 0 12px; /* reduced spacing */
             cursor: pointer;
             transition: color 0.3s ease;
         }
@@ -201,11 +208,12 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             overflow: hidden;
-            transition: transform 0.3s ease;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
 
         .item-card:hover {
-            transform: scale(1.05);
+            transform: translateY(-6px);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
         }
 
         .item-card img {
@@ -429,8 +437,7 @@
 </head>
 
 <body>
-    <!-- Navbar -->
-    <div class="navbar">
+    <nav class="navbar">
         <div class="logo-container">
             <img class="logo" src="Assets/Logo Dark Theme.png" alt="Iron Wings Logo">
             <span class="brand-name">IronWINGS</span>
@@ -452,17 +459,19 @@
                 <div class="dropdown-content">
                     <a href="Maintenance.html">Maintenance</a>
                     <a href="Contact.html">Book a Consult</a>
-                    <a href="military.html">Shop with Us</a>
+                    <a href="Shop.html">Shop with Us</a>
                 </div>
             </div>
             <a href="Contact.html">Contact</a>
         </div>
         <div class="nav-buttons">
-            <button class="btn"><a href="Cart.html">Your Cart</a></button>
-            <button class="btn"><a href="Login.html#signup">Sign Up</a></button>
-            <button class="btn secondary"><a href="Login.html#login">Login</a></button>
+            <a href="Login.html" class="btn">Sign In</a>
+            <a href="Cart.html" class="btn">Cart (0)</a>
         </div>
-    </div>
+    </nav>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
 
     <!-- Commercial Category Section -->
     <div class="category-section">
@@ -474,10 +483,9 @@
                 </a>
                 <div class="item-name">
                     <a href="Boeing747.html">Boeing 747</a>
-                    <span class="item-price">$418M</span>
+                    <span class="item-price">$449.99</span>
                 </div>
-                <input type="checkbox" class="cart-toggle" id="cart-boeing747">
-                <label for="cart-boeing747" class="cart-icon fas fa-shopping-cart"></label>
+                <button class="cart-icon" onclick="addToCart({id: 'b747', name: 'Boeing 747', price: 449.99})"><i class="fas fa-shopping-cart"></i></button>
             </div>
             <div class="item-card">
                 <a href="AirbusA380.html">
@@ -485,10 +493,9 @@
                 </a>
                 <div class="item-name">
                     <a href="AirbusA380.html">Airbus A380</a>
-                    <span class="item-price">$445M</span>
+                    <span class="item-price">$499.99</span>
                 </div>
-                <input type="checkbox" class="cart-toggle" id="cart-airbusa380">
-                <label for="cart-airbusa380" class="cart-icon fas fa-shopping-cart"></label>
+                <button class="cart-icon" onclick="addToCart({id: 'a380', name: 'Airbus A380', price: 499.99})"><i class="fas fa-shopping-cart"></i></button>
             </div>
             <div class="item-card">
                 <a href="AirbusA320.html">
@@ -496,10 +503,9 @@
                 </a>
                 <div class="item-name">
                     <a href="AirbusA320.html">Airbus A320</a>
-                    <span class="item-price">$101M</span>
+                    <span class="item-price">$299.99</span>
                 </div>
-                <input type="checkbox" class="cart-toggle" id="cart-airbusa320">
-                <label for="cart-airbusa320" class="cart-icon fas fa-shopping-cart"></label>
+                <button class="cart-icon" onclick="addToCart({id: 'a320', name: 'Airbus A320', price: 299.99})"><i class="fas fa-shopping-cart"></i></button>
             </div>
             <div class="item-card">
                 <a href="Boeing787.html">
@@ -507,10 +513,9 @@
                 </a>
                 <div class="item-name">
                     <a href="Boeing787.html">Boeing 787</a>
-                    <span class="item-price">$248M</span>
+                    <span class="item-price">$399.99</span>
                 </div>
-                <input type="checkbox" class="cart-toggle" id="cart-boeing787">
-                <label for="cart-boeing787" class="cart-icon fas fa-shopping-cart"></label>
+                <button class="cart-icon" onclick="addToCart({id: 'b787', name: 'Boeing 787', price: 399.99})"><i class="fas fa-shopping-cart"></i></button>
             </div>
         </div>
         <div class="item-grid">
@@ -520,10 +525,9 @@
                 </a>
                 <div class="item-name">
                     <a href="Boeing747.html">Boeing 747</a>
-                    <span class="item-price">$418M</span>
+                    <span class="item-price">$449.99</span>
                 </div>
-                <input type="checkbox" class="cart-toggle" id="cart-boeing747">
-                <label for="cart-boeing747" class="cart-icon fas fa-shopping-cart"></label>
+                <button class="cart-icon" onclick="addToCart({id: 'b747', name: 'Boeing 747', price: 449.99})"><i class="fas fa-shopping-cart"></i></button>
             </div>
             <div class="item-card">
                 <a href="AirbusA380.html">
@@ -531,10 +535,9 @@
                 </a>
                 <div class="item-name">
                     <a href="AirbusA380.html">Airbus A380</a>
-                    <span class="item-price">$445M</span>
+                    <span class="item-price">$499.99</span>
                 </div>
-                <input type="checkbox" class="cart-toggle" id="cart-airbusa380">
-                <label for="cart-airbusa380" class="cart-icon fas fa-shopping-cart"></label>
+                <button class="cart-icon" onclick="addToCart({id: 'a380', name: 'Airbus A380', price: 499.99})"><i class="fas fa-shopping-cart"></i></button>
             </div>
             <div class="item-card">
                 <a href="AirbusA320.html">
@@ -542,10 +545,9 @@
                 </a>
                 <div class="item-name">
                     <a href="AirbusA320.html">Airbus A320</a>
-                    <span class="item-price">$101M</span>
+                    <span class="item-price">$299.99</span>
                 </div>
-                <input type="checkbox" class="cart-toggle" id="cart-airbusa320">
-                <label for="cart-airbusa320" class="cart-icon fas fa-shopping-cart"></label>
+                <button class="cart-icon" onclick="addToCart({id: 'a320', name: 'Airbus A320', price: 299.99})"><i class="fas fa-shopping-cart"></i></button>
             </div>
             <div class="item-card">
                 <a href="Boeing787.html">
@@ -553,22 +555,21 @@
                 </a>
                 <div class="item-name">
                     <a href="Boeing787.html">Boeing 787</a>
-                    <span class="item-price">$248M</span>
+                    <span class="item-price">$399.99</span>
                 </div>
-                <input type="checkbox" class="cart-toggle" id="cart-boeing787">
-                <label for="cart-boeing787" class="cart-icon fas fa-shopping-cart"></label>
+                <button class="cart-icon" onclick="addToCart({id: 'b787', name: 'Boeing 787', price: 399.99})"><i class="fas fa-shopping-cart"></i></button>
             </div>
-        </div><div class="item-grid">
+        </div>
+        <div class="item-grid">
             <div class="item-card">
                 <a href="Boeing747.html">
                     <img src="Assets/Boeing 747.jpg" alt="Boeing 747">
                 </a>
                 <div class="item-name">
                     <a href="Boeing747.html">Boeing 747</a>
-                    <span class="item-price">$418M</span>
+                    <span class="item-price">$449.99</span>
                 </div>
-                <input type="checkbox" class="cart-toggle" id="cart-boeing747">
-                <label for="cart-boeing747" class="cart-icon fas fa-shopping-cart"></label>
+                <button class="cart-icon" onclick="addToCart({id: 'b747', name: 'Boeing 747', price: 449.99})"><i class="fas fa-shopping-cart"></i></button>
             </div>
             <div class="item-card">
                 <a href="AirbusA380.html">
@@ -576,10 +577,9 @@
                 </a>
                 <div class="item-name">
                     <a href="AirbusA380.html">Airbus A380</a>
-                    <span class="item-price">$445M</span>
+                    <span class="item-price">$499.99</span>
                 </div>
-                <input type="checkbox" class="cart-toggle" id="cart-airbusa380">
-                <label for="cart-airbusa380" class="cart-icon fas fa-shopping-cart"></label>
+                <button class="cart-icon" onclick="addToCart({id: 'a380', name: 'Airbus A380', price: 499.99})"><i class="fas fa-shopping-cart"></i></button>
             </div>
             <div class="item-card">
                 <a href="AirbusA320.html">
@@ -587,10 +587,9 @@
                 </a>
                 <div class="item-name">
                     <a href="AirbusA320.html">Airbus A320</a>
-                    <span class="item-price">$101M</span>
+                    <span class="item-price">$299.99</span>
                 </div>
-                <input type="checkbox" class="cart-toggle" id="cart-airbusa320">
-                <label for="cart-airbusa320" class="cart-icon fas fa-shopping-cart"></label>
+                <button class="cart-icon" onclick="addToCart({id: 'a320', name: 'Airbus A320', price: 299.99})"><i class="fas fa-shopping-cart"></i></button>
             </div>
             <div class="item-card">
                 <a href="Boeing787.html">
@@ -598,40 +597,12 @@
                 </a>
                 <div class="item-name">
                     <a href="Boeing787.html">Boeing 787</a>
-                    <span class="item-price">$248M</span>
+                    <span class="item-price">$399.99</span>
                 </div>
-                <input type="checkbox" class="cart-toggle" id="cart-boeing787">
-                <label for="cart-boeing787" class="cart-icon fas fa-shopping-cart"></label>
+                <button class="cart-icon" onclick="addToCart({id: 'b787', name: 'Boeing 787', price: 399.99})"><i class="fas fa-shopping-cart"></i></button>
             </div>
         </div>
-        <!-- Cart Sidebar, this requires JavaScript hence we will do it later-->
-        <div class="cart-sidebar">
-            <h2>Your Cart</h2>
-            <label for="cart-boeing747" class="close-cart fas fa-times"></label>
-            <label for="cart-airbusa380" class="close-cart fas fa-times"></label>
-            <label for="cart-airbusa320" class="close-cart fas fa-times"></label>
-            <label for="cart-boeing787" class="close-cart fas fa-times"></label>
-            <div class="cart-item" id="cart-item-boeing747">
-                <span>Boeing 747</span>
-                <span>$418M</span>
-            </div>
-            <div class="cart-item" id="cart-item-airbusa380">
-                <span>Airbus A380</span>
-                <span>$445M</span>
-            </div>
-            <div class="cart-item" id="cart-item-airbusa320">
-                <span>Airbus A320</span>
-                <span>$101M</span>
-            </div>
-            <div class="cart-item" id="cart-item-boeing787">
-                <span>Boeing 787</span>
-                <span>$248M</span>
-            </div>
-            <div class="cart-total">
-                Total: <span>$1.212B</span>
-            </div>
         </div>
-    </div>
 
     <!-- Footer -->
     <div class="footer">
@@ -659,6 +630,7 @@
             </div>
         </div>
     </div>
+    <script src="Assets/cart.js"></script>
 </body>
 
 </html>
