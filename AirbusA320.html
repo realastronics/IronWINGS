@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Airbus A320 - IronWINGS</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="Assets/common.css">
     <style>
         * {
             margin: 0;
@@ -191,7 +193,14 @@
             font-size: 18px;
             color: #555;
             max-width: 800px;
-            margin: 0 auto 40px;
+            margin: 0 auto 20px;
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 20px;
         }
 
         /* Video Section */
@@ -490,17 +499,29 @@
 </head>
 
 <body>
-    <!-- Navbar -->
-    <div class="navbar">
+    <!-- Navigation Bar -->
+    <nav class="navbar">
         <div class="logo-container">
-            <img class="logo" src="Assets/Logo Dark Theme.png" alt="Iron Wings Logo">
-            <span class="brand-name">IronWINGS</span>
+            <img src="Assets/logo.png" alt="IronWINGS Logo" class="logo">
+            <a href="index.html" class="brand-name">IronWINGS</a>
         </div>
         <div class="nav-links">
-            <a href="index.html" style="color: #fff; text-decoration: none;">Home</a>
-            <a href="About.html" style="color: #fff; text-decoration: none;">About Us</a>
-            <a href="TestFlight.html" style="color: #fff; text-decoration: none;">Test Flight</a>
-            <div class="dropdown">
+            <a href="index.html">Home</a>
+            <a href="commercial.html">Commercial</a>
+            <a href="military.html">Military</a>
+            <a href="Accessories.html">Accessories</a>
+            <a href="Contact.html">Contact</a>
+            <a href="Cart.html" class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Product Intro -->
                 <span class="dropbtn" style="color: #fff;">Categories</span>
                 <div class="dropdown-content">
                     <a href="military.html">Military</a>
@@ -529,6 +550,8 @@
     <div class="product-intro">
         <h1>Airbus A320</h1>
         <p>Meet the Airbus A320, a versatile narrow-body jet that has been a backbone of commercial aviation since 1988. This 1:100 scale model highlights its sleek design and efficiency, making it a great addition to any aviation enthusiast’s collection.</p>
+        <div class="product-price">$299.99</div>
+        <button class="add-to-cart-btn" onclick="addToCart({id: 'a320', name: 'Airbus A320', price: 299.99})">Add to Cart</button>
     </div>
 
     <!-- Video Section -->
@@ -670,6 +693,7 @@
             overlay.classList.remove('active');
         }
     </script>
+    <script src="Assets/cart.js"></script>
 </body>
 
 </html>
